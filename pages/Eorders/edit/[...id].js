@@ -70,7 +70,7 @@ const CityHolder = styled.div`
 `;
 
 
-const editOrder = () => {
+const EditOrder = () => {
     const [eventData, setEventData] = useState(null);
     const router = useRouter();
     const {id} = router.query;
@@ -262,4 +262,4 @@ const editOrder = () => {
   )
 }
 
-export default editOrder
+export default EditOrder

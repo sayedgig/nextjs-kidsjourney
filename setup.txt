@@ -13,4 +13,11 @@ SECRET="mysecret"
 
 vercel login : linayouness2018@gmail.com
 //////////////////////////////////
+git init 
+git add .
+git remote add origin https://github.com/sayedgig/nextjs-kidsjourney.git
+git commit -m "add project"
+git push origin master
 
+//////////////////////
+git add .
