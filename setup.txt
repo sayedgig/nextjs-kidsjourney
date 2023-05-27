@@ -29,6 +29,6 @@ git push origin master
 //////////////////////
 git add .
 git status
-git commit -m "solve building error"
+git commit -m "change download file to image"
 git push
     git push --set-upstream origin master

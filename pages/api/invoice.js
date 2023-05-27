@@ -56,7 +56,7 @@ export default async function handle(req, res) {
 
 // }
    
-const filePath = path.resolve('.', 'images_folder/photo.jpg');
+const filePath = path.resolve('.', 'images_folder/photo.pdf');
 const imageBuffer = fs.readFileSync(filePath);
 
   if (method === 'GET') {
@@ -66,7 +66,7 @@ const imageBuffer = fs.readFileSync(filePath);
     // //console.log(binaryStream);
     // return res.status(200).send(binaryStream); 
 
-    res.setHeader('Content-Type', 'image/jpg')
+    res.setHeader('Content-Type', 'application/pdf')
     res.send(imageBuffer)
     
     

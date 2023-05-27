@@ -108,7 +108,7 @@ const OrderInfo = ({
           const href = '/api/invoice?id='+ _id
           const link = document.createElement('a');
           link.href = href;
-          link.setAttribute('download', _id+'.jpg'); //or any other extension
+          link.setAttribute('download', _id+'.pdf'); //or any other extension
           document.body.appendChild(link);
           link.click();
 
