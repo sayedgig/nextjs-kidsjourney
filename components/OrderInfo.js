@@ -95,20 +95,20 @@ const OrderInfo = ({
 
     const  downloadExcel = async () => {
       //
-      const data = {
-        eventId: _id,
-        eventName:existingName,
-        eventDate:existingDate,
-        eventTicketsCategory:assignedTicketsCategory,
-        orders:orders,
-        total:total,
-        profit:profit,
-        lineTotalQuantity:result,
-      }
+      // const data = {
+      //   eventId: _id,
+      //   eventName:existingName,
+      //   eventDate:existingDate,
+      //   eventTicketsCategory:assignedTicketsCategory,
+      //   orders:orders,
+      //   total:total,
+      //   profit:profit,
+      //   lineTotalQuantity:result,
+      // }
           const href = '/api/invoice?id='+ _id
           const link = document.createElement('a');
           link.href = href;
-          link.setAttribute('download', _id+'.pdf'); //or any other extension
+          link.setAttribute('download', _id+'.jpg'); //or any other extension
           document.body.appendChild(link);
           link.click();
 

@@ -1,7 +1,14 @@
-https://developer.nylas.com/docs/developer-guide/provider-guides/google/create-google-app/#create-a-google-app
+https://console.cloud.google.com/welcome?_ga=2.168367073.-1397607996.1684440584&_gac=1.122744313.1685167557.CjwKCAjwscGjBhAXEiwAswQqNKs1o6aA1JOcQJTzGxOcv4D_14yrn5JuYQP2JgR7knsaHL2QHoQONhoCKlAQAvD_BwE&hl=en&authuser=1&pli=1&project=central-splice-354206
 
 http://localhost:3000/api/auth/callback/google
 http://localhost:3000/api/auth/callback/google
+
+new deploy 
+https://kidsjourney.vercel.app
+
+google url
+https://kidsjourney.vercel.app/api/auth/callback/google
+
 
 .env
 ////////////////////////////
@@ -21,3 +28,7 @@ git push origin master
 
 //////////////////////
 git add .
+git status
+git commit -m "solve building error"
+git push
+    git push --set-upstream origin master
