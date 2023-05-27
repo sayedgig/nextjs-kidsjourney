@@ -7,6 +7,8 @@ import XLSX from "xlsx";
 import { useRouter } from 'next/router';
 const ExcelJS = require("exceljs");
 
+
+    
 const OrderInfo = ({
     _id,
     name:existingName,
@@ -52,6 +54,7 @@ const OrderInfo = ({
       let total = 0;
       let ototal = 0;
       let profit = 0;
+      let TotalQuant = 0;
       let line_quantity = [];
       let createdBy =[];
       
@@ -63,6 +66,7 @@ const OrderInfo = ({
         profit += Number (order.profit);
         createdBy.push({Id:order.createdby,qty:1})
         for (const item of order.line_items) {
+          TotalQuant += Number (item.quantity);
           line_quantity.push({
             Id:item.cname.toUpperCase(),
             qty:item.quantity
@@ -123,28 +127,27 @@ const OrderInfo = ({
       const sheet = workbook.addWorksheet("My Sheet");
 
             // merge a range of cells
-            sheet.mergeCells('E2:I2');
-            sheet.mergeCells('E3:I3');
+            sheet.mergeCells('D2:H2');
+            sheet.mergeCells('D3:H3');
       // ... merged cells are linked
-      sheet.getCell('I2').value = existingName;
-      sheet.getCell('I2').font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
-      sheet.getCell('I3').value = new Date(existingDate);
-      sheet.getCell('I3').font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
+      sheet.getCell('H2').value = existingName;
+      sheet.getCell('H2').font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
+      sheet.getCell('H3').value = new Date(existingDate);
+      sheet.getCell('H3').font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
       
 
      let myColumns= [
         {name: 'ID', totalsRowLabel: 'Total', filterButton: false},
-        {name: 'Name', totalsRowLabel: '', filterButton: false},
-        {name: 'Phone', totalsRowLabel: '', filterButton: false},
-        {name: 'Notes', totalsRowLabel: '', filterButton: false},
+        {name: 'NAME', totalsRowLabel: '', filterButton: false},
+        {name: 'PHONE', totalsRowLabel: '', filterButton: false},
+        {name: 'NOTES', totalsRowLabel: '', filterButton: false},
        
       ];
           for (const item of assignedTicketsCategory) {            
-            myColumns=[...myColumns ,{name: item.cname, totalsRowFunction: 'sum', filterButton: false} ]
+            myColumns=[...myColumns ,{name: String(item.cname).toUpperCase(), totalsRowFunction: 'sum', filterButton: false} ]
           }
-      myColumns=[...myColumns ,{name: 'Amount', totalsRowFunction: 'sum', filterButton: false}];
-//////////////////////////////////////////////////////////
-//[1,'sayed ya sayed ','77320989','kid1 kid2 kid 3 kid 4' , 2,3, 70.10],
+     /////////////////////////////////////////////////////
+
 let myRows = [];
 let recordNo =0;
 
@@ -160,7 +163,7 @@ let recordNo =0;
             for (const item of order.line_items) {
               dataRow.push(Number(item.quantity));
             }
-            dataRow.push(Number(order?.total)) ;
+            //dataRow.push(Number(order?.total)) ;
             myRows.push(dataRow);
           }
           
@@ -285,13 +288,14 @@ let recordNo =0;
                       </td>             
                     <td>
                       <div class="flex flex-col items-start">
-                      <button onClick={()=>filterByUser('all')} style={{backgroundColor: `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`}} >All User</button>
+                      <button onClick={()=>filterByUser('all')} style={{Color: `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`}} >All User</button>
                     {resultCreatedby.length > 0 && resultCreatedby.map((property,index) => (
                           <button onClick={()=>filterByUser(property.Id)} style={{backgroundColor: `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`}} key={index}>{property.Id}:{property.qty}</button>
                       ))}
                       </div>
                     </td>
                     <td>
+                      <p>Total Quantity : {TotalQuant}</p>
                     {result.length > 0 && result.map((property,index) => (
                           <p key={index}>{property.Id}:{property.qty}</p>
                       ))}
