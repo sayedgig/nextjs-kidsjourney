@@ -10,7 +10,7 @@ export default async function handle(req, res) {
 //{"_id":{"$oid":"64704246439406a81de7b399"},"line_items":[{"quantity":{"$numberInt":"2"},"cname":"mini","sprice":"35","oprice":"25"},{"quantity":{"$numberInt":"3"},"cname":"mega","sprice":"60","oprice":"50"}],"event":{"$oid":"646f3b71238267f75bd176d9"},"name":"a","phone":"a","notes":"a","total":"250","profit":"50","createdby":"online","createdAt":{"$date":{"$numberLong":"1685078598523"}},"updatedAt":{"$date":{"$numberLong":"1685078598523"}},"__v":{"$numberInt":"0"}}
   if (method === 'GET') {
     
-    console.log(req.query?.user,req.query?.id );
+    //console.log(req.query?.user,req.query?.id );
     if (req.query?.id ) {
       if (req.query?.user=='all')
            res.json(await Eorder.find({event: req.query.id}));
@@ -47,9 +47,9 @@ export default async function handle(req, res) {
 
   if (method === 'DELETE') {
   
-    const {_id} = req.query;
+   // const {_id} = req.query;
     //console.log(_id)
-    await Eorder.deleteOne({_id});
+    await Eorder.deleteOne({_id:req.query?.id });
     res.json(true);
     
     

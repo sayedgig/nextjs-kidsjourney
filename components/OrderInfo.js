@@ -5,6 +5,7 @@ import Table from './test/Table';
 
 import XLSX from "xlsx";
 import { useRouter } from 'next/router';
+const ExcelJS = require("exceljs");
 
 const OrderInfo = ({
     _id,
@@ -43,8 +44,8 @@ const OrderInfo = ({
     async function deleteEvent(id) {
      //console.log(id);
           
-          await axios.delete('/api/Eorders?_id='+id);
-          fetchOrder();
+          await axios.delete('/api/Eorders?id='+id);
+          fetchOrder('all');
         
       };
 
@@ -116,12 +117,97 @@ const OrderInfo = ({
           document.body.removeChild(link);
           URL.revokeObjectURL(href);
     };
+    const [data, setData] = useState([]);
+    const exportExcelFile = () => {
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("My Sheet");
+
+            // merge a range of cells
+            sheet.mergeCells('E2:I2');
+            sheet.mergeCells('E3:I3');
+      // ... merged cells are linked
+      sheet.getCell('I2').value = existingName;
+      sheet.getCell('I2').font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
+      sheet.getCell('I3').value = new Date(existingDate);
+      sheet.getCell('I3').font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
+      
+
+     let myColumns= [
+        {name: 'ID', totalsRowLabel: 'Total', filterButton: false},
+        {name: 'Name', totalsRowLabel: '', filterButton: false},
+        {name: 'Phone', totalsRowLabel: '', filterButton: false},
+        {name: 'Notes', totalsRowLabel: '', filterButton: false},
+       
+      ];
+          for (const item of assignedTicketsCategory) {            
+            myColumns=[...myColumns ,{name: item.cname, totalsRowFunction: 'sum', filterButton: false} ]
+          }
+      myColumns=[...myColumns ,{name: 'Amount', totalsRowFunction: 'sum', filterButton: false}];
+//////////////////////////////////////////////////////////
+//[1,'sayed ya sayed ','77320989','kid1 kid2 kid 3 kid 4' , 2,3, 70.10],
+let myRows = [];
+let recordNo =0;
+
+
+          for (const order of orders) {
+            let dataRow =[];
+            recordNo=recordNo+1;
+
+            dataRow.push(recordNo);
+            dataRow.push(order?.name);
+            dataRow.push(order?.phone);
+            dataRow.push(order?.notes); 
+            for (const item of order.line_items) {
+              dataRow.push(Number(item.quantity));
+            }
+            dataRow.push(Number(order?.total)) ;
+            myRows.push(dataRow);
+          }
+          
+          
+
+      sheet.addTable({
+        name: 'MyTable',
+        ref: 'D4',
+        headerRow: true,
+        totalsRow: true,
+        style: {
+          theme: 'TableStyleDark3',
+          showRowStripes: true,
+        },
+        columns: myColumns,
+        rows: myRows,
+      });
+      
+
+        workbook.xlsx.writeBuffer().then(function (data) {
+          const blob = new Blob([data], {
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          });
+          const url = window.URL.createObjectURL(blob);
+          const anchor = document.createElement("a");
+          anchor.href = url;
+          anchor.download = existingName+_id+".xlsx";
+          anchor.click();
+          window.URL.revokeObjectURL(url);
+        });
+  
+        
+     
+    };
+
   return (
     <>
        <h1>Orders # {_id.substr(0, 6).toUpperCase()}</h1>
-       <button className="btn-default" onClick={()=>downloadExcel()}>
+       {/* <button className="btn-default" onClick={()=>downloadExcel()}>
               Event PDF
-        </button>
+        </button> */}
+        <button
+        className="btn btn-primary float-end mt-2 mb-2"
+        onClick={exportExcelFile}
+      >
+        Export XLSX
+      </button>
       <table className="basic">
         <thead>
           <tr>

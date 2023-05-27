@@ -13,12 +13,17 @@ https://kidsjourney.vercel.app/api/auth/callback/google
 .env
 ////////////////////////////
 GOOGLE_ID="83836196952-5aehbt8m7abjrggpivr3crtmf3b58qlt.apps.googleusercontent.com"
-GOOGLE_SECRET="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"
+GOOGLE_SECRET="GOCSPX-wMXYJASCNZdgTgAuliczzm08d6-"
 MONGODB_URI= "mongodb+srv://user:P%40ssw0rd@myfirstdatabase.9an9lsg.mongodb.net/?retryWrites=true&w=majority"
 SECRET="mysecret"
 //////////////////////////
 
 vercel login : linayouness2018@gmail.com
+///////////////////////
+
+excel sheet
+
+https://github.com/exceljs/exceljs#headers-and-footers
 //////////////////////////////////
 git init 
 git add .
