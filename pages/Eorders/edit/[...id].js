@@ -218,7 +218,12 @@ const EditOrder = () => {
                   <tr>
                     <td></td>
                     <td></td>
-                    <td>{total.toLocaleString()}</td>
+                    <td>
+                     
+                      <p>Total Amount:{total.toLocaleString()} </p>
+                      <p>Profit      :{profit.toLocaleString()}</p>
+                      <p>Net Amount  :{(total - profit).toLocaleString()}</p>
+                    </td>
                   </tr>
                 </tbody>
               </Table>

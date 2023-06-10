@@ -205,14 +205,19 @@ function NewOrder({swal}) {
                           onClick={() => moreOfThisProduct(product)}>+</Button>
                       </td>
                       <td>
-                        ${cartProducts.filter(id => id === product).length * product.sprice}
+                        {cartProducts.filter(id => id === product).length * product.sprice}
                       </td>
                     </tr>
                   ))}
                   <tr>
                     <td></td>
                     <td></td>
-                    <td>${total}</td>
+                    <td>
+                     
+                     <p>Total Amount:{total.toLocaleString()} </p>
+                     <p>Profit      :{profit.toLocaleString()}</p>
+                     <p>Net Amount  :{(total - profit).toLocaleString()}</p>
+                   </td>
                   </tr>
                 </tbody>
               </Table>
