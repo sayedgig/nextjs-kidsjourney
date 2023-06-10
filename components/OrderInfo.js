@@ -97,7 +97,7 @@ const OrderInfo = ({
        return res;
      }, {});
      
-
+    const[tableStyle,setTableStyle] = useState('');
     const  downloadExcel = async () => {
       //
       // const data = {
@@ -156,8 +156,7 @@ let recordNo =0;
             let dataRow =[];
             recordNo=recordNo+1;
 
-            dataRow.push(recordNo);
-            dataRow.push(order?.name);
+            dataRow.push(recordNo);            dataRow.push(order?.name);
             dataRow.push(order?.phone);
             dataRow.push(order?.notes); 
             for (const item of order.line_items) {
@@ -175,7 +174,7 @@ let recordNo =0;
         headerRow: true,
         totalsRow: true,
         style: {
-          theme: 'TableStyleDark3',
+          theme: `${tableStyle}`,
           showRowStripes: true,
         },
         columns: myColumns,
@@ -205,12 +204,25 @@ let recordNo =0;
        {/* <button className="btn-default" onClick={()=>downloadExcel()}>
               Event PDF
         </button> */}
+        <div style={{display:`flex`, flexDirection:`row` , justifyContent:'space-between' , alignItems:'center'}}>
         <button
         className="btn btn-primary float-end mt-2 mb-2"
         onClick={exportExcelFile}
       >
         Export XLSX
       </button>
+
+   
+  <select value={tableStyle} onChange={(e)=>{setTableStyle(e.target.value)}} >
+    <option selected value="TableStyleLight2">TableStyleLight2</option>
+    <option value="TableStyleLight3">TableStyleLight3</option>
+    <option value="TableStyleDark1">TableStyleDark1</option>
+    <option value="TableStyleDark2">TableStyleDark2</option>
+    <option value="TableStyleDark3">TableStyleDark3</option>
+
+  </select>
+  
+</div>
       <table className="basic">
         <thead>
           <tr>
