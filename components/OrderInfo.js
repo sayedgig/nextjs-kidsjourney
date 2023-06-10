@@ -97,7 +97,7 @@ const OrderInfo = ({
        return res;
      }, {});
      
-    const[tableStyle,setTableStyle] = useState('');
+    const[tableStyle,setTableStyle] = useState('TableStyleLight3');
     const  downloadExcel = async () => {
       //
       // const data = {
@@ -204,7 +204,7 @@ let recordNo =0;
        {/* <button className="btn-default" onClick={()=>downloadExcel()}>
               Event PDF
         </button> */}
-        <div style={{display:`flex`, flexDirection:`row` , justifyContent:'space-between' , alignItems:'center'}}>
+        <div className="flex gap-1">
         <button
         className="btn btn-primary float-end mt-2 mb-2"
         onClick={exportExcelFile}
@@ -213,11 +213,15 @@ let recordNo =0;
       </button>
 
    
-  <select value={tableStyle} onChange={(e)=>{setTableStyle(e.target.value)}} >
+  <select value={tableStyle} onChange={(e)=>{setTableStyle(e.target.value)}}
+              className="btn-default text-sm mb-2">
+
+    <option value="TableStyleLight1">TableStyleLight1</option>
     <option selected value="TableStyleLight2">TableStyleLight2</option>
     <option value="TableStyleLight3">TableStyleLight3</option>
     <option value="TableStyleDark1">TableStyleDark1</option>
     <option value="TableStyleDark2">TableStyleDark2</option>
+
     <option value="TableStyleDark3">TableStyleDark3</option>
 
   </select>
