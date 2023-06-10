@@ -23,6 +23,9 @@ SECRET="mysecret"
 //////////////////////////
 
 vercel login : linayouness2018@gmail.com
+
+https://vercel.com/linayouness2018-gmailcom/kidsjourney/deployments
+
 ///////////////////////
 
 excel sheet
@@ -38,6 +41,6 @@ git push origin master
 //////////////////////
 git add .
 git status
-git commit -m "change download file to image"
+git commit -m "add delete button to archieves page and add deletes page"
 git push
     git push --set-upstream origin master

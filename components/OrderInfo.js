@@ -218,6 +218,7 @@ let recordNo =0;
             <th>Name</th>
             <th>phone</th>
             <th>notes</th>
+            <th>User</th>
             {assignedTicketsCategory.length > 0 && assignedTicketsCategory.map((property,index) => (
               <th key={index}>{property.cname}({property.sprice})</th>
           ))}
@@ -242,6 +243,12 @@ let recordNo =0;
             </td>
             <td>
               {order.notes}
+            </td>
+            <td style={{
+                            backgroundColor: String(order.createdby).includes('Sahar') ?`rgb(24,176,242)`:`rgb(97,242,24)` 
+                      }} 
+            >
+              {String(order.createdby).slice(0,5)}
             </td>
             {order.line_items.length > 0 && order.line_items.map((property,index) => (
               <td key={index}>{property.quantity}</td>
@@ -290,7 +297,9 @@ let recordNo =0;
                       <div class="flex flex-col items-start">
                       <button onClick={()=>filterByUser('all')} style={{Color: `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`}} >All User</button>
                     {resultCreatedby.length > 0 && resultCreatedby.map((property,index) => (
-                          <button onClick={()=>filterByUser(property.Id)} style={{backgroundColor: `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`}} key={index}>{property.Id}:{property.qty}</button>
+                          <button onClick={()=>filterByUser(property.Id)} 
+                          style={{
+                            backgroundColor: String(property.Id).includes('Sahar') ?`rgb(24,176,242)`:`rgb(97,242,24)` }} key={index}>{property.Id}:{property.qty}</button>
                       ))}
                       </div>
                     </td>
