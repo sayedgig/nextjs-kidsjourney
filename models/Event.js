@@ -4,6 +4,7 @@ const EventSchema = new Schema({
   name: {type:String,required:true},
   date: {type:Date,required:true},
   archieve:{type:Boolean,default:0},
+  delete:{type:Boolean,default:0},
   ticketsCategory: [{type:Object}],
 });
 

@@ -8,7 +8,11 @@ https://kidsjourney.vercel.app
 
 google url
 https://kidsjourney.vercel.app/api/auth/callback/google
+///////////////////////////////////////////
 
+mangodb  
+
+https://account.mongodb.com/account/login?n=%2Fv2%2F63b69a9d3f6caf303b174742%23%2Fmetrics%2FreplicaSet%2F64623af2a86a957b443f08c5%2Fexplorer%2Ftest
 
 .env
 ////////////////////////////

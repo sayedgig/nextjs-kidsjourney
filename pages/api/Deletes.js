@@ -14,27 +14,10 @@ export default async function handle(req, res) {
     if (req.query?.id) {
       res.json(await Event.findOne({_id:req.query.id}));
     } else {
-      res.json(await Event.find({archieve:true,delete:false}));
+      res.json(await Event.find({delete:true}));
     }
   }
 
-    if (method === 'DELETE') {
-      const {_id} = req.query;
-      //await Event.deleteOne({_id});
-      await Event.updateOne({_id},{
-        archieve:0,
-      });
-      res.json('ok');
-    }
-
-    if (method === 'PUT') {
-      const {_id} = req.query;
-      //await Event.deleteOne({_id});
-      await Event.updateOne({_id},{
-        delete:1,
-      });
-      res.json('ok');
-    }
-  
+   
 
 }

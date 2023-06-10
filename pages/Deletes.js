@@ -5,7 +5,7 @@ import Link from "next/link";
 import { withSwal } from 'react-sweetalert2';
 
 
-    function Archieves({swal}) {    
+    function Deletes({swal}) {    
 
 
   const [Events,setEvents] = useState([]);
@@ -16,47 +16,13 @@ import { withSwal } from 'react-sweetalert2';
     fetchEvents();
   }, [])
   function fetchEvents() {
-    axios.get('/api/Archieves').then(result => {
+    axios.get('/api/Deletes').then(result => {
       setEvents(result.data);
       //console.log("get",result.data);
     });
   }
   
-  function archieveEvent(Event){
-    swal.fire({
-      title: 'Are you sure?',
-      text: `Do you want to activate ${Event.name}?`,
-      showCancelButton: true,
-      cancelButtonText: 'Cancel',
-      confirmButtonText: 'Yes, activate!',
-      confirmButtonColor: 'green',
-      reverseButtons: true,
-    }).then(async result => {
-      if (result.isConfirmed) {
-        const {_id} = Event;
-        await axios.delete('/api/Archieves?_id='+_id);
-        fetchEvents();
-      }
-    });
-  }
-
-  function deleteEvent(Event){
-    swal.fire({
-      title: 'Are you sure?',
-      text: `Do you want to delete ${Event.name}?`,
-      showCancelButton: true,
-      cancelButtonText: 'Cancel',
-      confirmButtonText: 'Yes, Delete!',
-      confirmButtonColor: '#d55',
-      reverseButtons: true,
-    }).then(async result => {
-      if (result.isConfirmed) {
-        const {_id} = Event;
-        await axios.put('/api/Archieves?_id='+_id);
-        fetchEvents();
-      }
-    });
-  }
+ 
 
 //////////////////////////////
 
@@ -65,7 +31,7 @@ import { withSwal } from 'react-sweetalert2';
   
   return (
     <Layout>
-      <h1>Archives</h1>
+      <h1>Deletes</h1>
         
       <table className="basic mt-4">
           <thead>
@@ -73,7 +39,7 @@ import { withSwal } from 'react-sweetalert2';
              <td>Event Id</td>
             <td>Event name</td>
             <td>Event Date</td>
-            <td></td>
+            
           </tr>
           </thead>
           <tbody>
@@ -91,15 +57,7 @@ import { withSwal } from 'react-sweetalert2';
                   Orders
                 </Link>
                
-                <button
-                  onClick={() => archieveEvent(Event)}
-                  className="btn-green">Active</button>
-
-                  
-                <button
-                  onClick={() => deleteEvent(Event)}
-                  className="btn-red">Delete</button>
-
+               
               </td>
             </tr>
           ))}
@@ -111,5 +69,5 @@ import { withSwal } from 'react-sweetalert2';
 }
 
 export default withSwal(({swal}, ref) => (
-    <Archieves swal={swal} />
+    <Deletes swal={swal} />
   ));
