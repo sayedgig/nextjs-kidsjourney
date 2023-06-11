@@ -8,9 +8,10 @@ export default function MainDetails() {
     <>
       <section className="flex flex-col items-end justify-end">
         <h2 className="font-bold text-3xl uppercase mb-1">KIDS JOURNEY</h2>
-        <p>Contacts </p>
+        <img src ={`/kidsJourney.jpg`}  style={{width:280 , height:250}} />
+        {/* <p>Contacts </p>
         <p>Doaa Mahmoud : 30240480</p>
-        <p>Sahar Yousef : 30240480</p>
+        <p>Sahar Yousef : 30240480</p> */}
 
       </section>
     </>

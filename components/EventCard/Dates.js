@@ -13,7 +13,7 @@ export default function Dates({eventNumber, eventDate}) {
             <span className="font-bold">Event number:</span> {String(eventNumber).slice(0,6)}
           </li>
           <li className="p-1 bg-gray-100">
-            <span className="font-bold">Event date:</span> {eventDate}
+            <span className="font-bold">Event date:</span> {String(eventDate).slice(0,10)}
           </li>
           <li className="p-1 ">
             <span className="font-bold">Print date:</span> {getCurrentDate()}

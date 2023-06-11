@@ -53,7 +53,7 @@ const PrintEvent = () => {
             content={() => componentRef.current}
         />
       <div ref={componentRef} className="p-5">
-            <Header />
+            {/* <Header /> */}
 
             <MainDetails />
 
