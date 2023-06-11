@@ -34,6 +34,7 @@ const PrintEvent = () => {
         name:existingName,
         date:existingDate,
         ticketsCategory:assignedTicketsCategory,
+        path,
        
       } = {...eventData};
       
@@ -54,12 +55,19 @@ const PrintEvent = () => {
         />
       <div ref={componentRef} className="p-5">
             {/* <Header /> */}
-
+            
+            <div style={{float: 'right',width: '50%'}}>
+                {/* <div> */}
             <MainDetails />
+            </div>
+            {/* <div style={{float: 'left',width: '50%'}}> */}
 
-            <ClientDetails eventName={existingName} />
+            <ClientDetails eventName={existingName} path={path} />
+            {/* </div> */}
 
+            {/* </div> */}
             <Dates  eventNumber={_id}  eventDate={existingDate}/>
+            
 
             <Table {...eventData}/>
 

@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import { withSwal } from 'react-sweetalert2';
 import Link from "next/link";
+import EventImage from './../components/EventImage';
 
 
 function Events({swal}) {
@@ -10,7 +11,8 @@ function Events({swal}) {
   const [editedEvent, setEditedEvent] = useState(null);
   const [name,setName] = useState('');
   const [eDate,setEDate] = useState('');
-  
+  const[imagePath,setImagePath] = useState('');
+
 
 
   const [Events,setEvents] = useState([]);
@@ -32,6 +34,7 @@ function Events({swal}) {
     const data = {
       name,
       date:eDate,
+      path:imagePath,
       
       ticketsCategory:ticketsCategory.map(p => ({
         cname:p.cname,
@@ -52,6 +55,7 @@ function Events({swal}) {
     }
     setName('');
     setEDate('');
+    setImagePath('');
     setTicketsCategory([]);
     fetchEvents();
    } else{
@@ -71,6 +75,7 @@ function Events({swal}) {
   function editEvent(event){
     setEditedEvent(event);
     setName(event.name);
+    setImagePath(event.path);
     
     //console.log("date",moment(event.date).utc().format("YYYY-MM-DD"));
 
@@ -164,10 +169,22 @@ function Events({swal}) {
             value={eDate}
             required
             />
+            <select value={imagePath} 
+             onChange={(e)=>{setImagePath(e.target.value)}}
+           >
+              <option value="">NoImage</option>
+              {EventImage.map((image,index)=>{
+                return(
+                  <option key ={index} value={image.path}>{image.name}</option>
+                )
+              })}
+            </select>
           
         </div>
 
         <div className="mb-2">
+          {imagePath && (<img src ={`/${imagePath}`}  style={{width:100 , height:100}} />)}
+        
           <label className="block">Ticket Category</label>
           <button
             onClick={addTicketscategory}
@@ -219,6 +236,7 @@ function Events({swal}) {
                 setEditedEvent(null);
                 setName('');
                 setEDate('');
+                setImagePath('');
                 setTicketsCategory([]);
               }}
               className="btn-default">Cancel</button>

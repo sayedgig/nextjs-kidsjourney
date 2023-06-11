@@ -19,11 +19,12 @@ export default async function handle(req, res) {
   }
 
   if (method === 'POST') {
-    const {name,date,ticketsCategory} = req.body;
-    console.log("testdata",name,date,ticketsCategory)
+    const {name,date,path,ticketsCategory} = req.body;
+    //console.log("testdata",name,date,path,ticketsCategory)
     const EventDoc = await Event.create({
       name,
       date,
+      path,
       ticketsCategory,
       
     });
@@ -31,10 +32,11 @@ export default async function handle(req, res) {
   }
 
   if (method === 'PUT') {
-    const {name,date,ticketsCategory,_id} = req.body;
+    const {name,date,path,ticketsCategory,_id} = req.body;
     const EventDoc = await Event.updateOne({_id},{
       name,
       date,
+      path,
       ticketsCategory,
       
     });
