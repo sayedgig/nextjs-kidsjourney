@@ -30,6 +30,7 @@
     "react-sortablejs": "^6.1.4",
     "react-spinners": "^0.13.8",
     "react-sweetalert2": "^0.5.2",
+    "react-to-print": "^2.14.13",
     "sortablejs": "^1.15.0",
     "styled-components": "^5.3.9",
     "typeorm": "0.2.28",
