@@ -89,6 +89,12 @@ export default[
         "path": "Alsultan.jpg",
         
     },
+    {
+        "number": "15",
+        "name": "KidzMondo",
+        "path": "KidzMondo.jpg",
+        
+    },
 ]
 
 
