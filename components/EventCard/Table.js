@@ -86,12 +86,12 @@ const fetchOrder = () => {
         <thead>
           <tr className="bg-gray-100 p-1">
             <th className="font-bold">#</th>
-            <th className="font-bold">Name</th>
-            <th className="font-bold">phone</th>
-            <th className="font-bold">notes</th>
+            <th className="font-bold">NAME</th>
+            <th className="font-bold">PHONE</th>
+            <th className="font-bold">NOTES</th>
             
             {assignedTicketsCategory.length > 0 && assignedTicketsCategory.map((property,index) => (
-              <th className="font-bold" key={index}>{property.cname}</th>
+              <th className="font-bold" key={index}>{String(property.cname).toUpperCase()}</th>
           ))}
            
            
