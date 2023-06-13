@@ -211,7 +211,7 @@ let recordNo =0;
         };
 
         
-          sheet.getCell(`H${4+zz}`).font = { name: 'Comic Sans MS', family: 4, size: 12, underline: 'double', bold: true };
+          sheet.getCell(`H${4+zz}`).font = { name: 'Comic Sans MS', family: 4, size: 12, bold: true };
         
         // 
          
