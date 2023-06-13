@@ -123,21 +123,45 @@ const fetchOrder = () => {
            
           </tr>
         ))} 
+
+
+          <tr className="bg-gray-200 p-1">
+            <td style={{textAlign: `center` }}  >
+              
+            </td>
+            
+            <td style={{textAlign: `center`, color:`red`}} className="font-bold">
+            TOTAL
+            </td>
+            <td style={{textAlign: `center`}}>
+              
+            </td>
+            <td style={{textAlign: `center`}}>
+            
+            </td>
+          
+             {result.length > 0 && result.map((property,index) => (
+                          <td style={{textAlign: `center`, color:`red`}}  className="font-bold" key={index}>{property.qty}</td>
+                      ))}
+                    
+           
+           
+          </tr>
         </tbody>
       </table>
 
-      <div className="flex items-end justify-end text-gray-800 text-2xl font-bold"> 
+      {/* <div className="flex items-end justify-end text-gray-800 text-2xl font-bold"> 
         <table >
                     
                
-                      {/* <p>Total Quantity : {TotalQuant}</p> */}
+                    
                     {result.length > 0 && result.map((property,index) => (
                           <tr className="font-bold" key={index}><td>{property.Id} </td><td>:{property.qty}</td></tr>
                       ))}
                     
               
         </table>
-      </div>
+      </div> */}
 
       
     </>
