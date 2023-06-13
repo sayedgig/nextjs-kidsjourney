@@ -141,7 +141,8 @@ const OrderInfo = ({
         {name: 'NAME', totalsRowLabel: '', filterButton: false},
         {name: 'PHONE', totalsRowLabel: '', filterButton: false},
         {name: 'NOTES', totalsRowLabel: '', filterButton: false},
-       
+        {name: 'ADMIN', totalsRowLabel: '', filterButton: false},
+        // ,style : {font:{bold: true, name: 'Comic Sans MS'}}
       ];
           for (const item of assignedTicketsCategory) {            
             myColumns=[...myColumns ,{name: String(item.cname).toUpperCase(), totalsRowFunction: 'sum', filterButton: false} ]
@@ -159,6 +160,7 @@ let recordNo =0;
             dataRow.push(recordNo);            dataRow.push(order?.name);
             dataRow.push(order?.phone);
             dataRow.push(order?.notes); 
+            dataRow.push(String(order?.createdby).slice(0,5)); 
             for (const item of order.line_items) {
               dataRow.push(Number(item.quantity));
             }
@@ -181,6 +183,40 @@ let recordNo =0;
         rows: myRows,
       });
       
+      let zz=0;
+      for (const order of orders) {
+        zz=zz+1
+        //console.log(zz);
+        //.includes('Sahar') ?`rgb(24,176,242)`:`rgb(97,242,24)` 
+        if(sheet.getCell(`H${4+zz}`).value.includes('Sahar'))
+        sheet.getCell(`H${4+zz}`).fill = {
+          type: 'gradient',
+          gradient: 'path',
+          center:{left:0.5,top:0.5},
+          stops: [
+            {position:0, color:{argb:'FF009EFF'}},
+            {position:1, color:{argb:'FF009EFF'}}
+          ]
+        };
+        
+        else
+        sheet.getCell(`H${4+zz}`).fill = {
+          type: 'gradient',
+          gradient: 'path',
+          center:{left:0.5,top:0.5},
+          stops: [
+            {position:0, color:{argb:'FF00FF00'}},
+            {position:1, color:{argb:'FF00FF00'}}
+          ]
+        };
+
+        
+          sheet.getCell(`H${4+zz}`).font = { name: 'Comic Sans MS', family: 4, size: 12, underline: 'double', bold: true };
+        
+        // 
+         
+      }
+
 
         workbook.xlsx.writeBuffer().then(function (data) {
           const blob = new Blob([data], {
@@ -245,7 +281,7 @@ let recordNo =0;
             <th>Name</th>
             <th>phone</th>
             <th>notes</th>
-            <th>User</th>
+            <th>Admin</th>
             {assignedTicketsCategory.length > 0 && assignedTicketsCategory.map((property,index) => (
               <th key={index}>{property.cname}({property.sprice})</th>
           ))}
@@ -309,7 +345,7 @@ let recordNo =0;
                 <thead>
                   <tr>
                     <th>Order Count</th>
-                    <th>User Orders</th>
+                    <th>Admin Orders</th>
                     <th>Total Quantity</th>
                     
                     <th>Total Amount</th>
