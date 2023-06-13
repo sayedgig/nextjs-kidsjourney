@@ -189,26 +189,37 @@ let recordNo =0;
         //console.log(zz);
         //.includes('Sahar') ?`rgb(24,176,242)`:`rgb(97,242,24)` 
         if(sheet.getCell(`H${4+zz}`).value.includes('Sahar'))
+        // sheet.getCell(`H${4+zz}`).fill = {
+        //   type: 'gradient',
+        //   gradient: 'path',
+        //   center:{left:0.5,top:0.5},
+        //   stops: [
+        //     {position:0, color:{argb:'FF009EFF'}},
+        //     {position:1, color:{argb:'FF009EFF'}}
+        //   ]
+        // };
         sheet.getCell(`H${4+zz}`).fill = {
-          type: 'gradient',
-          gradient: 'path',
-          center:{left:0.5,top:0.5},
-          stops: [
-            {position:0, color:{argb:'FF009EFF'}},
-            {position:1, color:{argb:'FF009EFF'}}
-          ]
+          type: 'pattern',
+          pattern:'solid',
+          fgColor:{argb:'FF009EFF'},
         };
         
         else
+
         sheet.getCell(`H${4+zz}`).fill = {
-          type: 'gradient',
-          gradient: 'path',
-          center:{left:0.5,top:0.5},
-          stops: [
-            {position:0, color:{argb:'FF00FF00'}},
-            {position:1, color:{argb:'FF00FF00'}}
-          ]
+          type: 'pattern',
+          pattern:'solid',
+          fgColor:{argb:'FF00FF00'},
         };
+        // sheet.getCell(`H${4+zz}`).fill = {
+        //   type: 'gradient',
+        //   gradient: 'path',
+        //   center:{left:0.5,top:0.5},
+        //   stops: [
+        //     {position:0, color:{argb:'FF00FF00'}},
+        //     {position:1, color:{argb:'FF00FF00'}}
+        //   ]
+        // };
 
         
          // sheet.getCell(`H${4+zz}`).font = { name: 'Comic Sans MS', family: 4, size: 12, bold: true };
