@@ -88,7 +88,7 @@ const fetchOrder = () => {
             <th className="font-bold">#</th>
             <th className="font-bold">NAME</th>
             <th className="font-bold">PHONE</th>
-            <th className="font-bold">NOTES</th>
+            {/* <th className="font-bold">NOTES</th> */}
             
             {assignedTicketsCategory.length > 0 && assignedTicketsCategory.map((property,index) => (
               <th className="font-bold" key={index}>{String(property.cname).toUpperCase()}</th>
@@ -110,9 +110,9 @@ const fetchOrder = () => {
             <td style={{textAlign: `center`}}>
               {order.phone}
             </td>
-            <td style={{textAlign: `center`}}>
+            {/* <td style={{textAlign: `center`}}>
               {order.notes}
-            </td>
+            </td> */}
           
             {order.line_items.length > 0 && order.line_items.map((property,index) => (
               <td  style={{textAlign: `center`}} key={index}>{property.quantity}</td>
