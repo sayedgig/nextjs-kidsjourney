@@ -7,7 +7,7 @@ export default function Dates({eventNumber, eventDate}) {
 
   return (
     <>
-      <article className="mt-10 mb-14 flex items-end justify-end">
+      <article className="mt-10 mb-4 flex items-end justify-end">
         <ul>
           <li className="p-1 ">
             <span className="font-bold">Event number:</span> {String(eventNumber).slice(0,6)}
