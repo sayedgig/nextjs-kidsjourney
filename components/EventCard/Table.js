@@ -136,9 +136,9 @@ const fetchOrder = () => {
             <td style={{textAlign: `center`}}>
               
             </td>
-            <td style={{textAlign: `center`}}>
+            {/* <td style={{textAlign: `center`}}>
             
-            </td>
+            </td> */}
           
              {result.length > 0 && result.map((property,index) => (
                           <td style={{textAlign: `center`, color:`red`}}  className="font-bold" key={index}>{property.qty}</td>
