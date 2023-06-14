@@ -12,7 +12,8 @@ import Input from "@/components/test/Input";
 import { withSwal } from 'react-sweetalert2';
 
 import {useSession} from "next-auth/react";
-
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -172,10 +173,92 @@ function NewOrder({swal}) {
     //     }
        }
 
+       
+const getNamesOne = async (str) => {
+  try {
+    //let searchableName = str.replace(/,/g, "");
+    let url = "/api/autocompleteOne?name=" + str;
+
+    let { data } = await axios.get(url);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const getPhonesOne = async (str) => {
+  try {
+   // let searchableCity = str.replace(/,/g, "");
+    let url = "/api/autocompleteTwo?phone=" + str;
+    //let url = "" + searchableCity;
+
+    let { data } = await axios.get(url);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+  const [optionsOne, setOptionsOne] = useState([]);
+  const [optionsTwo, setOptionsTwo] = useState([]);
+  const [value, setValue] = useState("");
+
+  const onChangeOne = async (e) => {
+    if (e.target.value) {
+      let data = await getNamesOne(e.target.value);
+      setOptionsOne(data);
+    }
+  };
+
+  const onChangeTwo = async (e) => {
+    if (e.target.value) {
+      let data = await getPhonesOne(e.target.value);
+      setOptionsTwo(data);
+    }
+  };
+  const handleFillButton =()=>{
+    let aplitArr = value.split(':');
+    setName(aplitArr[0]);
+    setPhone(aplitArr[1]);
+  }
+
+
   return (
     <Layout>
-    
+  
     <Center>
+
+      <div style={{ marginTop: 50 }}>
+        <Autocomplete
+          freeSolo
+          filterOptions={(x) => x}
+          onChange={(e) => setValue(e.target.innerText)}
+          options={optionsOne ? optionsOne.map((obj) => `${obj.name}:${obj.phone}:${obj.createdby}` ) : []}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Search by name"
+              onChange={(e) => onChangeOne(e)}
+            />
+          )}
+        />
+        <Autocomplete
+          freeSolo
+          filterOptions={(x) => x}
+          onChange={(e) => setValue(e.target.innerText)}
+          options={optionsTwo ? optionsTwo.map((obj) => `${obj.name}:${obj.phone}:${obj.createdby}`) : []}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Search By Phone"
+              onChange={(e) => onChangeTwo(e)}
+            />
+          )}
+        />
+      </div>
+      <h1>{value && (<Button black 
+                          onClick={handleFillButton}>Fill</Button>)}{value}</h1>
+    
         {/* <ColumnsWrapper> */}
           <Box>
             <h2>Cart</h2>
