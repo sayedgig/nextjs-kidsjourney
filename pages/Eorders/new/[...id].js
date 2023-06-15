@@ -216,10 +216,18 @@ const getPhonesOne = async (str) => {
       setOptionsTwo(data);
     }
   };
-  const handleFillButton =()=>{
-    let aplitArr = value.split(':');
-    setName(aplitArr[0]);
-    setPhone(aplitArr[1]);
+  const handleFillButton =(text)=>{
+    if (text && text.includes(':') )
+    {
+      let aplitArr = text.split(':');
+      if (aplitArr.length>0)
+      {
+        setName(aplitArr[0]);
+        setPhone(aplitArr[1]);
+      }
+      
+    }
+    
   }
 
 
@@ -232,7 +240,10 @@ const getPhonesOne = async (str) => {
         <Autocomplete
           freeSolo
           filterOptions={(x) => x}
-          onChange={(e) => setValue(e.target.innerText)}
+          onChange={(e) => {
+            setValue(e.target.innerText)
+              handleFillButton(e.target.innerText)
+            }}
           options={optionsOne ? optionsOne.map((obj) => `${obj.name}:${obj.phone}:${obj.createdby}` ) : []}
           renderInput={(params) => (
             <TextField
@@ -245,7 +256,10 @@ const getPhonesOne = async (str) => {
         <Autocomplete
           freeSolo
           filterOptions={(x) => x}
-          onChange={(e) => setValue(e.target.innerText)}
+          onChange={(e) => {
+            setValue(e.target.innerText)
+            handleFillButton(e.target.innerText)
+          }}
           options={optionsTwo ? optionsTwo.map((obj) => `${obj.name}:${obj.phone}:${obj.createdby}`) : []}
           renderInput={(params) => (
             <TextField
@@ -256,8 +270,10 @@ const getPhonesOne = async (str) => {
           )}
         />
       </div>
-      <h1>{value && (<Button black 
-                          onClick={handleFillButton}>Fill</Button>)}{value}</h1>
+      <h1>
+        {/* {value && (<Button black 
+                          onClick={handleFillButton}>Fill</Button>)} */}
+                          {value}</h1>
     
         {/* <ColumnsWrapper> */}
           <Box>

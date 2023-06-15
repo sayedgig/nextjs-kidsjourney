@@ -162,13 +162,17 @@ let recordNo =0;
             dataRow.push(order?.notes); 
             dataRow.push(String(order?.createdby).slice(0,5)); 
             for (const item of order.line_items) {
+              //console.log(item.cname)
               dataRow.push(Number(item.quantity));
             }
+
+            // Book Bus  Privet Car 
+
             //dataRow.push(Number(order?.total)) ;
             myRows.push(dataRow);
           }
           
-          
+        //{console.log(tableStyle,myColumns,myRows)}
 
       sheet.addTable({
         name: 'MyTable',

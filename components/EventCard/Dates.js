@@ -15,9 +15,9 @@ export default function Dates({eventNumber, eventDate}) {
           <li className="p-1 bg-gray-100">
             <span className="font-bold">Event date:</span> {String(eventDate).slice(0,10)}
           </li>
-          <li className="p-1 ">
+          {/* <li className="p-1 ">
             <span className="font-bold">Print date:</span> {getCurrentDate()}
-          </li>
+          </li> */}
         </ul>
       </article>
     </>
