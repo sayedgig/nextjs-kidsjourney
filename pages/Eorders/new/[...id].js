@@ -270,10 +270,10 @@ const getPhonesOne = async (str) => {
           )}
         />
       </div>
-      <h1>
+      {/* <h1> */}
         {/* {value && (<Button black 
                           onClick={handleFillButton}>Fill</Button>)} */}
-                          {value}</h1>
+                          {/* {value}</h1> */}
     
         {/* <ColumnsWrapper> */}
           <Box>
