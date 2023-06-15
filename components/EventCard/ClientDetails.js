@@ -8,7 +8,7 @@ export default function ClientDetails({ eventName , path }) {
     <>
       <section className="mt-5">
         <h2 className="text-3xl uppercase font-bold mb-1">{String(eventName).toUpperCase()}</h2>
-        {path.length>0 && (<img src ={`/${path}`}  style={{width:150 , height:150}} />
+        {path.length>1 && (<img src ={`/${path}`}  style={{width:150 , height:150}} />
 )}
       </section>
     </>

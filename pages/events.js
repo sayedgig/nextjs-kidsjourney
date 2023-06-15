@@ -11,7 +11,7 @@ function Events({swal}) {
   const [editedEvent, setEditedEvent] = useState(null);
   const [name,setName] = useState('');
   const [eDate,setEDate] = useState('');
-  const[imagePath,setImagePath] = useState('');
+  const[imagePath,setImagePath] = useState('$');
 
 
 
@@ -43,7 +43,7 @@ function Events({swal}) {
 
       })),
     };
-    // console.log("data",data);
+     console.log("data",data);
     if (editedEvent) {
       data._id = editedEvent._id;
       await axios.put('/api/Events', data);
@@ -55,7 +55,7 @@ function Events({swal}) {
     }
     setName('');
     setEDate('');
-    setImagePath('');
+    setImagePath('$');
     setTicketsCategory([]);
     fetchEvents();
    } else{
@@ -172,10 +172,10 @@ function Events({swal}) {
             <select value={imagePath} 
              onChange={(e)=>{setImagePath(e.target.value)}}
            >
-              <option value="">NoImage</option>
+              {/* <option key = {0} value={image.path}>NoImage</option> */}
               {EventImage.map((image,index)=>{
                 return(
-                  <option key ={index} value={image.path}>{image.name}</option>
+                  <option key ={index+1} value={image.path}>{image.name}</option>
                 )
               })}
             </select>
@@ -183,7 +183,7 @@ function Events({swal}) {
         </div>
 
         <div className="mb-2">
-          {imagePath && (<img src ={`/${imagePath}`}  style={{width:100 , height:100}} />)}
+          {imagePath && imagePath.length>1 && (<img src ={`/${imagePath}`}  style={{width:100 , height:100}} />)}
         
           <label className="block">Ticket Category</label>
           <button
@@ -236,7 +236,7 @@ function Events({swal}) {
                 setEditedEvent(null);
                 setName('');
                 setEDate('');
-                setImagePath('');
+                setImagePath('$');
                 setTicketsCategory([]);
               }}
               className="btn-default">Cancel</button>

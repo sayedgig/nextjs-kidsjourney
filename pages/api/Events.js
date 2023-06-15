@@ -20,7 +20,7 @@ export default async function handle(req, res) {
 
   if (method === 'POST') {
     const {name,date,path,ticketsCategory} = req.body;
-    //console.log("testdata",name,date,path,ticketsCategory)
+    // console.log("testdata",name,date,path,ticketsCategory)
     const EventDoc = await Event.create({
       name,
       date,

@@ -1,5 +1,11 @@
 export default[
     {
+        "number": "0",
+        "name": "NoImage",
+        "path": "$",
+        
+    },
+    {
         "number": "1",
         "name": "Baladna",
         "path": "Baladna.jpg",
@@ -93,6 +99,12 @@ export default[
         "number": "15",
         "name": "KidzMondo",
         "path": "KidzMondo.jpg",
+        
+    },
+    {
+        "number": "16",
+        "name": "WOW",
+        "path": "wow.png",
         
     },
 ]
