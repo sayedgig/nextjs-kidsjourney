@@ -85,8 +85,11 @@ const OrderInfo = ({
         res[value.Id].qty += value.qty;
         return res;
       }, {});
+
+           //console.log("result",result);
+
+     
       
-     // console.log("result",result);
      var resultCreatedby = [];
      createdBy.reduce(function(res, value) {
        if (!res[value.Id]) {
@@ -263,8 +266,8 @@ let recordNo =0;
         </button> */}
         <div className="flex gap-1">
      
-      <button  onClick={exportExcelFile} class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-  <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+      <button  onClick={exportExcelFile} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+  <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
   
   <span>Export XLSX</span>
 </button>
@@ -284,8 +287,8 @@ let recordNo =0;
 
  
   
-      <button  onClick={PrintCard} class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-  <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+      <button  onClick={PrintCard} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+  <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
   
   <span>Download PDF</span>
 </button>
@@ -377,7 +380,7 @@ let recordNo =0;
                     {orders.length}
                       </td>             
                     <td>
-                      <div class="flex flex-col items-start">
+                      <div className="flex flex-col items-start">
                       <button onClick={()=>filterByUser('all')} style={{Color: `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`}} >All User</button>
                     {resultCreatedby.length > 0 && resultCreatedby.map((property,index) => (
                           <button onClick={()=>filterByUser(property.Id)} 

@@ -145,6 +145,7 @@ function Events({swal}) {
     });
   }
   
+
   return (
     <Layout>
       <h1>Events</h1>
@@ -221,6 +222,7 @@ function Events({swal}) {
               <button
                 onClick={() => removeTicketcategory(index)}
                 type="button"
+                disabled
                 className="btn-red">
                 Remove
               </button>
