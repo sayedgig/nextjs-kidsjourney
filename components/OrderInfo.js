@@ -157,7 +157,8 @@ let recordNo =0;
             let dataRow =[];
             recordNo=recordNo+1;
 
-            dataRow.push(recordNo);            dataRow.push(order?.name);
+            dataRow.push(recordNo);            
+            dataRow.push(order?.name);
             dataRow.push(order?.phone);
             dataRow.push(order?.notes); 
             dataRow.push(String(order?.createdby).slice(0,5)); 
@@ -328,6 +329,8 @@ let recordNo =0;
             >
               {String(order.createdby).slice(0,5)}
             </td>
+
+            
             {order.line_items.length > 0 && order.line_items.map((property,index) => (
               <td key={index}>{property.quantity}</td>
              ))}
@@ -336,9 +339,9 @@ let recordNo =0;
             <td>
               {order.total}
             </td>
-            {/* <td>
-              {order.createdby}
-            </td> */}
+             
+        
+            
             <td>
 
             <Link className="btn-default" href={'/Eorders/edit/'+order._id}>
@@ -353,7 +356,9 @@ let recordNo =0;
             </td>
           </tr>
         ))} 
-        </tbody>
+
+        
+            </tbody>
       </table>
 
       <Table>
@@ -383,7 +388,7 @@ let recordNo =0;
                     </td>
                     <td>
                       <p>Total Quantity : {TotalQuant}</p>
-                    {result.length > 0 && result.map((property,index) => (
+                    {result.length > 0 && result.filter(fltr => fltr.qty>0).map((property,index) => (
                           <p key={index}>{property.Id}:{property.qty}</p>
                       ))}
                     </td>

@@ -277,13 +277,13 @@ const getPhonesOne = async (str) => {
     
         {/* <ColumnsWrapper> */}
           <Box>
-            <h2>Cart</h2>
+            {/* <h2>Cart</h2> */}
           
             {assignedTicketsCategory?.length > 0 && (
               <Table>
                 <thead>
                   <tr>
-                    <th>Product</th>
+                    <th>ticket Category</th>
                     <th>Quantity</th>
                     <th>Sale Price</th>
                   </tr>
