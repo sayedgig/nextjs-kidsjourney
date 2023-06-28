@@ -43,7 +43,7 @@ function Events({swal}) {
 
       })),
     };
-     console.log("data",data);
+    // console.log("data",data);
     if (editedEvent) {
       data._id = editedEvent._id;
       await axios.put('/api/Events', data);
@@ -138,12 +138,51 @@ function Events({swal}) {
     });
   }
   function removeTicketcategory(indexToRemove) {
-    setTicketsCategory(prev => {
-      return [...prev].filter((p,pIndex) => {
-        return pIndex !== indexToRemove;
+    //console.log("orders",orders);
+    if(orders.length == 0)
+    {
+      setTicketsCategory(prev => {
+        return [...prev].filter((p,pIndex) => {
+          return pIndex !== indexToRemove;
+        });
       });
-    });
+    }
+    else 
+    {
+      swal.fire({
+        title: 'This event has Orders',
+        text: `it is not allowed to remove it`,
+        //showCancelButton: true,
+        //cancelButtonText: 'Cancel',
+        confirmButtonText: 'close',
+        confirmButtonColor: '#d55',
+        reverseButtons: true,
+      });
+    }
+    
   }
+
+  ////////////////////
+ const[orders,setOrders] = useState([]);
+  useEffect(() => {
+    if (editedEvent)
+    fetchOrder('all',editedEvent._id);
+    else
+    setOrders([]);
+
+    
+  }, [editedEvent]);
+  const fetchOrder = (user,_id) => {
+    setOrders([]);
+    axios.get('/api/Eorders?id='+ _id + '&user=' + user).then(response => {
+      setOrders(response.data);
+      //console.log("response",response.data);
+    }).catch(err => {
+      console.error(err);
+    });
+  };
+
+
   
 
   return (
@@ -222,7 +261,7 @@ function Events({swal}) {
               <button
                 onClick={() => removeTicketcategory(index)}
                 type="button"
-                disabled
+                
                 className="btn-red">
                 Remove
               </button>

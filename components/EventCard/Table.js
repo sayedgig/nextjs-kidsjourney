@@ -62,7 +62,7 @@ const fetchOrder = () => {
            );
  
         
-           // console.log("myTicketsCategory",myTicketsCategory,assignedTicketsCategory);
+          // console.log("result",line_quantity);
        ///////////////
 
   return (
@@ -100,7 +100,9 @@ const fetchOrder = () => {
             <th className="font-bold">PHONE</th>
             {/* <th className="font-bold">NOTES</th> */}
             
-            {assignedTicketsCategory.length > 0 && assignedTicketsCategory.filter(filtr=>myTicketsCategory.indexOf(filtr.cname.toUpperCase()) > -1).map((property,index) => (
+            {assignedTicketsCategory.length > 0 && assignedTicketsCategory
+             .filter(filtr=>myTicketsCategory.indexOf(filtr.cname.toUpperCase()) > -1)
+            .map((property,index) => (
               <th className="font-bold" key={index}>{String(property.cname).toUpperCase()}</th>
           ))}
            
@@ -124,9 +126,14 @@ const fetchOrder = () => {
               {order.notes}
             </td> */}
           
-            {order.line_items.length > 0 && order.line_items.filter(filtr=>myTicketsCategory.indexOf(filtr.cname.toUpperCase())>-1).map((property,index) => (
+            {order.line_items.length > 0 && 
+            order.line_items
+            .filter(filtr=>myTicketsCategory.indexOf(filtr.cname.toUpperCase())>-1)
+            .map((property,index) => (
               <td  style={{textAlign: `center`}} key={index}>{property.quantity}</td>
-             ))}
+             ))
+            
+             }
 
 
            
@@ -150,7 +157,9 @@ const fetchOrder = () => {
             
             </td> */}
           
-             {result.length > 0 && result.filter(filtr=>myTicketsCategory.indexOf(filtr.Id.toUpperCase())>-1).map((property,index) => (
+             {result.length > 0 && result
+             .filter(filtr=>myTicketsCategory.indexOf(filtr.Id.toUpperCase())>-1)
+             .map((property,index) => (
                           <td style={{textAlign: `center`, color:`red`}}  className="font-bold" key={index}>{property.qty}</td>
                       ))}
                     
