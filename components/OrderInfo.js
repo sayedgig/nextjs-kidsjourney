@@ -258,6 +258,19 @@ let recordNo =0;
 
     }
 
+    ///////////////
+    let myTicketsCategory = []
+    for (const item of result) 
+        if (Number (item.qty)> 0)
+        myTicketsCategory.push(
+          item.Id.toUpperCase(),
+        );
+
+     
+       // console.log("result",line_quantity);
+    ///////////////
+
+
   return (
     <>
        <h1>Orders # {_id.substr(0, 6).toUpperCase()}</h1>
@@ -301,7 +314,9 @@ let recordNo =0;
             <th>phone</th>
             <th>notes</th>
             <th>Admin</th>
-            {assignedTicketsCategory.length > 0 && assignedTicketsCategory.map((property,index) => (
+            {assignedTicketsCategory.length > 0 && assignedTicketsCategory
+            .filter(filtr=>myTicketsCategory.indexOf(filtr.cname.toUpperCase()) > -1)
+            .map((property,index) => (
               <th key={index}>{property.cname}({property.sprice})</th>
           ))}
             <th>amount</th>
@@ -334,13 +349,16 @@ let recordNo =0;
             </td>
 
             
-            {order.line_items.length > 0 && order.line_items.map((property,index) => (
+            {order.line_items.length > 0 && order.line_items
+            .filter(filtr=>myTicketsCategory.indexOf(filtr.cname.toUpperCase()) > -1)
+
+            .map((property,index) => (
               <td key={index}>{property.quantity}</td>
              ))}
 
 
             <td>
-              {order.total}
+              {Number(order.total).toLocaleString()}
             </td>
              
         
