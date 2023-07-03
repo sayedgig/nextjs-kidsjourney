@@ -5,6 +5,7 @@ import Table from './test/Table';
 
 import XLSX from "xlsx";
 import { useRouter } from 'next/router';
+
 const ExcelJS = require("exceljs");
 
 
@@ -148,7 +149,7 @@ const OrderInfo = ({
         // ,style : {font:{bold: true, name: 'Comic Sans MS'}}
       ];
           for (const item of assignedTicketsCategory) {            
-            myColumns=[...myColumns ,{name: String(item.cname).toUpperCase(), totalsRowFunction: 'sum', filterButton: false} ]
+            myColumns=[...myColumns ,{name: String(item.cname || '-').toUpperCase(), totalsRowFunction: 'sum', filterButton: false} ]
           }
      /////////////////////////////////////////////////////
 

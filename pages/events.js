@@ -1,9 +1,12 @@
 import Layout from "@/components/Layout";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import axios from "axios";
 import { withSwal } from 'react-sweetalert2';
 import Link from "next/link";
 import EventImage from './../components/EventImage';
+import ShowTable from "@/components/ShowTable";
+
+
 
 
 function Events({swal}) {
@@ -184,6 +187,7 @@ function Events({swal}) {
 
 
   
+  
 
   return (
     <Layout>
@@ -289,6 +293,7 @@ function Events({swal}) {
         </div>
       </form>
       {!editedEvent && (
+        <>
         <table className="basic mt-4">
           <thead>
           <tr>
@@ -325,6 +330,8 @@ function Events({swal}) {
           ))}
           </tbody>
         </table>
+        {/* <ShowTable Events ={Events} editEvent = {editEvent} deleteEvent={deleteEvent} /> */}
+        </>
       )}
     </Layout>
   );
