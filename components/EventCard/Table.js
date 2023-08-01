@@ -98,7 +98,7 @@ const fetchOrder = () => {
             <th className="font-bold">#</th>
             <th className="font-bold">NAME</th>
             <th className="font-bold">PHONE</th>
-            {/* <th className="font-bold">NOTES</th> */}
+            <th className="font-bold">NOTES</th>
             
             {assignedTicketsCategory.length > 0 && assignedTicketsCategory
              .filter(filtr=>myTicketsCategory.indexOf(filtr.cname.toUpperCase()) > -1)
@@ -122,9 +122,10 @@ const fetchOrder = () => {
             <td style={{textAlign: `center`}}>
               {order.phone}
             </td>
-            {/* <td style={{textAlign: `center`}}>
+
+            <td style={{textAlign: `center`}}>
               {order.notes}
-            </td> */}
+            </td> 
           
             {order.line_items.length > 0 && 
             order.line_items
@@ -153,9 +154,9 @@ const fetchOrder = () => {
             <td style={{textAlign: `center`}}>
               
             </td>
-            {/* <td style={{textAlign: `center`}}>
+            <td style={{textAlign: `center`}}>
             
-            </td> */}
+            </td> 
           
              {result.length > 0 && result
              .filter(filtr=>myTicketsCategory.indexOf(filtr.Id.toUpperCase())>-1)

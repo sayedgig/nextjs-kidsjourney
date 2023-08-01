@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import Link from "next/link";
 import { withSwal } from 'react-sweetalert2';
+import AgGridEvent from "@/components/ag-grid/AgGridEvent";
 
 
     function Archieves({swal}) {    
@@ -67,7 +68,7 @@ import { withSwal } from 'react-sweetalert2';
     <Layout>
       <h1>Archives</h1>
         
-      <table className="basic mt-4">
+      {/* <table className="basic mt-4">
           <thead>
           <tr>
              <td>Event Id</td>
@@ -104,7 +105,15 @@ import { withSwal } from 'react-sweetalert2';
             </tr>
           ))}
           </tbody>
-        </table>
+        </table> */}
+
+     <AgGridEvent 
+                 EventsData={Events} 
+                 archieveEvent={archieveEvent} 
+                 deleteEvent={deleteEvent}
+     />
+        
+
      
     </Layout>
   );
