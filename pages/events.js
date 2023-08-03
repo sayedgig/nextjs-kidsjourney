@@ -92,6 +92,30 @@ function Events({swal}) {
       }))
     );
       }
+
+      
+
+      function PayEvent(Event,stype){
+        swal.fire({
+          title: 'Are you sure?',
+          text: `Do you want to make  ${Event.name} is ${stype}?`,
+          showCancelButton: true,
+          cancelButtonText: 'Cancel',
+          confirmButtonText: `Yes, ${stype}!`,
+          confirmButtonColor: '#d55',
+          reverseButtons: true,
+        }).then(async result => {
+          if (result.isConfirmed) {
+            const {_id} = Event;
+            if (stype=='Paid')
+            await axios.put(`/api/EventPaid?_id=`+_id);
+            else
+            await axios.delete(`/api/EventPaid?_id=`+_id);
+
+            fetchEvents();
+          }
+        });
+      }
   function deleteEvent(Event){
     swal.fire({
       title: 'Are you sure?',
@@ -225,9 +249,12 @@ function Events({swal}) {
             </select>
           
         </div>
-
+        
         <div className="mb-2">
+
           {imagePath && imagePath.length>1 && (<img src ={`/${imagePath}`}  style={{width:100 , height:100}} />)}
+          
+                     
         
           <label className="block">Ticket Category</label>
           <button
@@ -301,6 +328,7 @@ function Events({swal}) {
             <td>Event Name</td>
             <td>Event Date</td>
             <td>Orders</td>
+            <td>Paid</td>
             {/* <td>Profit</td> */}
             <td></td>
           </tr>
@@ -312,6 +340,12 @@ function Events({swal}) {
               <td>{Event.name}</td>
               <td>{String(Event.date).slice(0,10)}</td>
               <td>{Event.orders.length}</td>
+              <td className={Event.paid ? 'text-green-600' : 'text-red-600'}>
+              {/* {Event.paid ? 'YES' : 'NO'} */}
+                 <button
+                  onClick={() => {PayEvent(Event,Event.paid ?'UnPaid':'Paid')}}
+                  className={Event.paid ? 'btn-green':  'btn-default' }>{Event.paid ? 'Paid': 'UnPaid' }</button>
+               </td>
               {/* <td>{Event.orders.reduce((a,v) =>  a = a + Number(v.profit) , 0 )}</td> */}
               <td>
               <Link className="btn-default" href={'/Eorders/'+Event._id}>
@@ -329,6 +363,7 @@ function Events({swal}) {
                 <button
                   onClick={() => deleteEvent(Event)}
                   className="btn-red">Archieve</button>
+                                 
               </td>
             </tr>
           ))}

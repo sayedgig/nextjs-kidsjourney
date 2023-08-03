@@ -7,6 +7,7 @@ const EventSchema = new Schema({
   delete:{type:Boolean,default:0},
   path: {type:String,required:true},
   ticketsCategory: [{type:Object}],
+  paid:{type:Boolean,default:0},
 });
 
 export const Event = models?.Event || model('Event', EventSchema);
