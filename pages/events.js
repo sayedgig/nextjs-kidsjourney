@@ -209,7 +209,9 @@ function Events({swal}) {
     });
   };
 
-
+  function getDayName(date = new Date(), locale = 'en-US') {
+    return date.toLocaleDateString(locale, {weekday: 'long'});
+  }
   
   
 
@@ -338,7 +340,14 @@ function Events({swal}) {
             <tr key={Event._id}>
               <td>{Event._id.substr(0, 6).toUpperCase()}</td>
               <td>{Event.name}</td>
-              <td>{String(Event.date).slice(0,10)}</td>
+              <td>{
+                getDayName(new Date(String(Event.date).slice(0,10)))
+                .substr(0, 3)
+                .toUpperCase()
+                .concat('-')
+                .concat(String(Event.date).slice(0,10))
+               
+              }</td>
               <td>{Event.orders.length}</td>
               <td className={Event.paid ? 'text-green-600' : 'text-red-600'}>
               {/* {Event.paid ? 'YES' : 'NO'} */}

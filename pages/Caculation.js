@@ -60,8 +60,8 @@ const Caculation = () => {
             <th rowspan="2">Event Name</th>
             <th rowspan="2"> Event Date</th>
             <th rowspan="2"> Paid </th>
-            <th colspan="5" style={{backgroundColor: `rgb(24,176,242)`}} >Sahar</th>
-            <th colspan="5" style={{backgroundColor: `rgb(97,242,24)`}}  >Doaa</th>
+            <th colspan="4" style={{backgroundColor: `rgb(24,176,242)`}} >Sahar</th>
+            <th colspan="4" style={{backgroundColor: `rgb(97,242,24)`}}  >Doaa</th>
 
             {/* <td>Orders</td>
             
@@ -75,7 +75,7 @@ const Caculation = () => {
             <th style={{backgroundColor: `rgb(24,176,242)`}}>Profit</th>
             <th style={{backgroundColor: `rgb(24,176,242)`}}>Cost</th>
           
-            <th style={{backgroundColor: `rgb(24,176,242)`}}>Total</th>
+            {/* <th style={{backgroundColor: `rgb(24,176,242)`}}>Total</th> */}
             <th style={{backgroundColor: `rgb(24,176,242)`}}>Net</th>
 
 
@@ -84,7 +84,7 @@ const Caculation = () => {
             <th style={{backgroundColor: `rgb(97,242,24)`}}>Profit</th>
             <th style={{backgroundColor: `rgb(97,242,24)`}}>Cost</th>
           
-            <th style={{backgroundColor: `rgb(97,242,24)`}}>Total</th>
+            {/* <th style={{backgroundColor: `rgb(97,242,24)`}}>Total</th> */}
             <th style={{backgroundColor: `rgb(97,242,24)`}}>Net</th>
 
          </tr>
@@ -96,7 +96,7 @@ const Caculation = () => {
               <td>{Event.name}</td>
               <td>{String(Event.date).slice(0,10)}</td>
               <td className={Event.paid ? 'text-green-600' : 'text-red-600'}>
-              {Event.paid ? 'YES' : 'NO'}
+              {Event.paid ? 'Paid' : 'UnPaid'}
                </td>
 
               <td>{Event.orders.filter((ord)=> ord.createdby=='sahar youssef').length}</td>
@@ -118,12 +118,12 @@ const Caculation = () => {
 
               
 
-               <td>
+               {/* <td>
                 {
                 Number(
                 Event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 )
                 ).toLocaleString() 
-                }</td>
+                }</td> */}
                <td>
                 {
                 Number(
@@ -149,12 +149,12 @@ const Caculation = () => {
                Event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) 
                ).toLocaleString()  
               }</td>
-              <td>{
+              {/* <td>{
                 Number(
                   
                    Event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').reduce((a,v) =>  a = a + Number(v.total) , 0 )
               ).toLocaleString()  
-            }</td>
+            }</td> */}
              
               <td>{
                 Number(
@@ -180,7 +180,7 @@ const Caculation = () => {
               <td style={{backgroundColor: `rgb(24,176,242)`}}>{
                   Number(SaharTotal - SaharProfit ).toLocaleString()
                }</td>
-              <td style={{backgroundColor: `rgb(24,176,242)`}}>{Number(SaharTotal).toLocaleString()}</td>
+              {/* <td style={{backgroundColor: `rgb(24,176,242)`}}>{Number(SaharTotal).toLocaleString()}</td> */}
               <td style={{backgroundColor: `rgb(24,176,242)`}}>{Number(SaharNet).toLocaleString()}</td>
               
               <td style={{backgroundColor: `rgb(97,242,24)`}}>{Number(DoaaOrders).toLocaleString()}</td>
@@ -188,7 +188,7 @@ const Caculation = () => {
               <td style={{backgroundColor: `rgb(97,242,24)`}}>{
                   Number(DoaaTotal - DoaaProfit).toLocaleString()
                }</td>
-              <td style={{backgroundColor: `rgb(97,242,24)`}}>{Number(DoaaTotal).toLocaleString() }</td>
+              {/* <td style={{backgroundColor: `rgb(97,242,24)`}}>{Number(DoaaTotal).toLocaleString() }</td> */}
 
               <td style={{backgroundColor: `rgb(97,242,24)`}}>{Number(DoaaNet).toLocaleString() }</td>
             </tr>
