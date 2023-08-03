@@ -300,6 +300,8 @@ function Events({swal}) {
              <td>Event Id</td>
             <td>Event Name</td>
             <td>Event Date</td>
+            <td>Orders</td>
+            {/* <td>Profit</td> */}
             <td></td>
           </tr>
           </thead>
@@ -309,6 +311,8 @@ function Events({swal}) {
               <td>{Event._id.substr(0, 6).toUpperCase()}</td>
               <td>{Event.name}</td>
               <td>{String(Event.date).slice(0,10)}</td>
+              <td>{Event.orders.length}</td>
+              {/* <td>{Event.orders.reduce((a,v) =>  a = a + Number(v.profit) , 0 )}</td> */}
               <td>
               <Link className="btn-default" href={'/Eorders/'+Event._id}>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">

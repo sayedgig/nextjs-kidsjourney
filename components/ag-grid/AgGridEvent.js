@@ -25,9 +25,41 @@ function AgGridEvent({EventsData,archieveEvent,deleteEvent}) {
     return String(obj.value).slice(0,10);
   };
 
+  const format_OrderCount = (obj) => {
+    // this puts commas into the number eg 1000 goes to 1,000,
+    // i pulled this from stack overflow, i have no idea how it works
+   // console.log(obj.value);
+    return obj.value.length;
+  };
+  const format_OrderProfit = (obj) => {
+ 
+    // let total = 0;
+    // let ototal = 0;
+    let profit = 0;
+    // let TotalQuant = 0;
+    // let line_quantity = [];
+    // let createdBy =[];
+   let orders = obj.value;
+   for (const order of orders) {
+    //const price = products.find(p => p === product)?.sprice || 0;
+    //total += Number (order.total);
+    profit += Number (order.profit);
+    //createdBy.push({Id:order.createdby,qty:1})
+    // for (const item of order.line_items) {
+    //   TotalQuant += Number (item.quantity);
+    //   line_quantity.push({
+    //     Id:item.cname.toUpperCase(),
+    //     qty:item.quantity
+    //   });
+    //}
+  }
+  
+    return Number(profit).toLocaleString();
+  };
+
   const columnDefs = [
     {
-      headerName: "Actions", field: "_id" ,filter: false,flex: 1.5, cellRendererFramework: (params) => <div>
+      headerName: "Actions", field: "_id" ,filter: false,flex: 2, cellRendererFramework: (params) => <div>
         
         
         <Button variant="contained" color="primary"  
@@ -57,8 +89,13 @@ function AgGridEvent({EventsData,archieveEvent,deleteEvent}) {
     },
     { headerName: "Event Id", field: "_id" ,sort: 'desc' , valueFormatter: format_Id},
 
-    { headerName: "Event name", field: "name",flex: 2 },
+    { headerName: "Event name", field: "name",flex: 1.5 },
     { headerName: "Event Date", field: "date" , valueFormatter: format_Date},
+    { headerName: "Orders", field: "orders" , valueFormatter: format_OrderCount},
+    // { headerName: "Profit", field: "orders" , valueFormatter: format_OrderProfit},
+
+
+
    
   ]
 
@@ -73,10 +110,13 @@ function AgGridEvent({EventsData,archieveEvent,deleteEvent}) {
 
   const autoSizeAll = useCallback((skipHeader) => {
     const allColumnIds = [];
-    gridRef.current.columnApi.getColumns().forEach((column) => {
-      allColumnIds.push(column.getId());
-    });
-    gridRef.current.columnApi.autoSizeColumns(allColumnIds, skipHeader);
+    
+      gridRef.current.columnApi.getColumns().forEach((column) => {
+        allColumnIds.push(column.getId());
+      });
+      gridRef.current.columnApi.autoSizeColumns(allColumnIds, skipHeader);
+    
+    
   }, []);
 
   const sortBy_id = useCallback(() => {
@@ -117,10 +157,10 @@ function AgGridEvent({EventsData,archieveEvent,deleteEvent}) {
                <Button color="primary"  variant="contained" onClick={() => autoSizeAll(false)} style={{ marginBottom: '5px', fontWeight: 'bold' }}>
                Auto-Size All</Button>
                
-               <Button  color="primary"  variant="contained" style={{ marginBottom: '5px', fontWeight: 'bold' }} 
+               {/* <Button  color="primary"  variant="contained" style={{ marginBottom: '5px', fontWeight: 'bold' }} 
                 onClick={()=>onExportClick()}>
                 Export to Excel             
-                </Button>
+                </Button> */}
 
            
 

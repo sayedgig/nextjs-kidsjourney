@@ -22,6 +22,8 @@ import AgGridEvent from "@/components/ag-grid/AgGridEvent";
       //console.log("get",result.data);
     });
   }
+
+  
   
   function archieveEvent(Event){
     swal.fire({

@@ -14,7 +14,19 @@ export default async function handle(req, res) {
     if (req.query?.id) {
       res.json(await Event.findOne({_id:req.query.id}));
     } else {
-      res.json(await Event.find({archieve:true,delete:false}));
+      res.json(await Event
+      //.find({archieve:true,delete:false})
+      .aggregate([{
+        $lookup:{
+            from:"eorders",
+            localField:"_id",
+            foreignField:"event",
+            as:"orders"
+        }},
+        { $match: { archieve:true,delete:false } },
+      ])
+      
+      );
     }
   }
 
