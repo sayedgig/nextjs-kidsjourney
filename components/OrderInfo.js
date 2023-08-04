@@ -373,7 +373,9 @@ let recordNo =0;
                   Edit
                 </Link>
             <button
-                  onClick={() => deleteEvent(order._id)}
+                  onClick={() => 
+                    window.confirm( 'Are you sure you want to delete this Order?', ) &&  deleteEvent(order._id)
+                  }
                   className="btn-red">Delete</button>
             </td>
           </tr>

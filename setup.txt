@@ -27,6 +27,14 @@ vercel login : linayouness2018@gmail.com
 https://vercel.com/linayouness2018-gmailcom/kidsjourney/deployments
 
 ///////////////////////
+connect to mongodb compass
+connection string
+mongodb+srv://user:P%40ssw0rd@myfirstdatabase.9an9lsg.mongodb.net/
+browse test database
+browse collection
+export collections
+
+///////////
 
 excel sheet
 
