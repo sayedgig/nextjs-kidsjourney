@@ -33,6 +33,8 @@ const Caculation = () => {
       SaharOrders += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').length);
       SaharProfit += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) || 0);
       SaharTotal += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 ) || 0);
+      
+      
       if (event.paid)
       SaharNet += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) || 0);
       else
@@ -99,7 +101,7 @@ const Caculation = () => {
             <th style={{backgroundColor: `rgb(24,176,242)`}}>Cost</th>
           
             {/* <th style={{backgroundColor: `rgb(24,176,242)`}}>Total</th> */}
-            <th style={{backgroundColor: `rgb(24,176,242)`}}>Net</th>
+            <th style={{backgroundColor: `rgb(24,176,242)`}}>Balance</th>
 
 
 
@@ -108,7 +110,7 @@ const Caculation = () => {
             <th style={{backgroundColor: `rgb(97,242,24)`}}>Cost</th>
           
             {/* <th style={{backgroundColor: `rgb(97,242,24)`}}>Total</th> */}
-            <th style={{backgroundColor: `rgb(97,242,24)`}}>Net</th>
+            <th style={{backgroundColor: `rgb(97,242,24)`}}>Balance</th>
 
          </tr>
           </thead>
@@ -132,6 +134,7 @@ const Caculation = () => {
               ).toLocaleString() 
               }</td>
               <td>{
+                Event.paid ? 0 :
                 Number(
               Event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 ) 
                -  
@@ -169,6 +172,7 @@ const Caculation = () => {
               ).toLocaleString()  
               }</td>
               <td>{
+                Event.paid ? 0 :
                 Number(
               Event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').reduce((a,v) =>  a = a + Number(v.total) , 0 ) 
                -  
@@ -204,7 +208,7 @@ const Caculation = () => {
               <td style={{backgroundColor: `rgb(24,176,242)`}}>{ Number(SaharOrders).toLocaleString() }</td>
               <td style={{backgroundColor: `rgb(24,176,242)`}}>{Number(SaharProfit).toLocaleString() }</td>
               <td style={{backgroundColor: `rgb(24,176,242)`}}>{
-                  Number(SaharTotal - SaharProfit ).toLocaleString()
+                  Number(SaharNet - SaharProfit ).toLocaleString()
                }</td>
               {/* <td style={{backgroundColor: `rgb(24,176,242)`}}>{Number(SaharTotal).toLocaleString()}</td> */}
               <td style={{backgroundColor: `rgb(24,176,242)`}}>{Number(SaharNet).toLocaleString()}</td>
@@ -212,7 +216,7 @@ const Caculation = () => {
               <td style={{backgroundColor: `rgb(97,242,24)`}}>{Number(DoaaOrders).toLocaleString()}</td>
               <td style={{backgroundColor: `rgb(97,242,24)`}}>{Number(DoaaProfit).toLocaleString()}</td>
               <td style={{backgroundColor: `rgb(97,242,24)`}}>{
-                  Number(DoaaTotal - DoaaProfit).toLocaleString()
+                  Number(DoaaNet - DoaaProfit).toLocaleString()
                }</td>
               {/* <td style={{backgroundColor: `rgb(97,242,24)`}}>{Number(DoaaTotal).toLocaleString() }</td> */}
 

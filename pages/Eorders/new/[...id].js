@@ -212,6 +212,7 @@ const getPhonesOne = async (str) => {
 
   const onChangeTwo = async (e) => {
     if (e.target.value) {
+      setPhone(e.target.value);
       let data = await getPhonesOne(e.target.value);
       setOptionsTwo(data);
     }
@@ -236,40 +237,7 @@ const getPhonesOne = async (str) => {
   
     <Center>
 
-      <div style={{ marginTop: 50 }}>
-        <Autocomplete
-          freeSolo
-          filterOptions={(x) => x}
-          onChange={(e) => {
-            setValue(e.target.innerText)
-              handleFillButton(e.target.innerText)
-            }}
-          options={optionsOne ? optionsOne.map((obj) => `${obj.name}:${obj.phone}:${obj.createdby}` ) : []}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Search by name"
-              onChange={(e) => onChangeOne(e)}
-            />
-          )}
-        />
-        <Autocomplete
-          freeSolo
-          filterOptions={(x) => x}
-          onChange={(e) => {
-            setValue(e.target.innerText)
-            handleFillButton(e.target.innerText)
-          }}
-          options={optionsTwo ? optionsTwo.map((obj) => `${obj.name}:${obj.phone}:${obj.createdby}`) : []}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Search By Phone"
-              onChange={(e) => onChangeTwo(e)}
-            />
-          )}
-        />
-      </div>
+     
       {/* <h1> */}
         {/* {value && (<Button black 
                           onClick={handleFillButton}>Fill</Button>)} */}
@@ -325,6 +293,41 @@ const getPhonesOne = async (str) => {
            {/* {!!cartProducts?.length && ( */}
             <Box>
               <h2>Order information</h2>
+
+              <div style={{ marginTop: 50 }}>
+                    {/* <Autocomplete
+                      freeSolo
+                      filterOptions={(x) => x}
+                      onChange={(e) => {
+                        setValue(e.target.innerText)
+                          handleFillButton(e.target.innerText)
+                        }}
+                      options={optionsOne ? optionsOne.map((obj) => `${obj.name}:${obj.phone}:${obj.createdby}` ) : []}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Search by name"
+                          onChange={(e) => onChangeOne(e)}
+                        />
+                      )}
+                    /> */}
+                    <Autocomplete
+                      freeSolo
+                      filterOptions={(x) => x}
+                      onChange={(e) => {
+                        setValue(e.target.innerText)
+                        handleFillButton(e.target.innerText)
+                      }}
+                      options={optionsTwo ? optionsTwo.map((obj) => `${obj.name}:${obj.phone}:${obj.createdby}`) : []}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Search By Phone"
+                          onChange={(e) => onChangeTwo(e)}
+                        />
+                      )}
+                    />
+                  </div>
               <Input type="text"
                      placeholder="Name"
                      value={name}
