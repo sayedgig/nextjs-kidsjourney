@@ -330,7 +330,7 @@ function Events({swal}) {
             <td>Event Name</td>
             <td>Event Date</td>
             <td>Orders</td>
-            <td>Paid</td>
+            {/* <td>Paid</td> */}
             {/* <td>Profit</td> */}
             <td></td>
           </tr>
@@ -349,12 +349,12 @@ function Events({swal}) {
                
               }</td>
               <td>{Event.orders.length}</td>
-              <td className={Event.paid ? 'text-green-600' : 'text-red-600'}>
-              {/* {Event.paid ? 'YES' : 'NO'} */}
+              {/* <td className={Event.paid ? 'text-green-600' : 'text-red-600'}>
+            
                  <button
                   onClick={() => {PayEvent(Event,Event.paid ?'UnPaid':'Paid')}}
                   className={Event.paid ? 'btn-green':  'btn-default' }>{Event.paid ? 'Paid': 'UnPaid' }</button>
-               </td>
+               </td> */}
               {/* <td>{Event.orders.reduce((a,v) =>  a = a + Number(v.profit) , 0 )}</td> */}
               <td>
               <Link className="btn-default" href={'/Eorders/'+Event._id}>

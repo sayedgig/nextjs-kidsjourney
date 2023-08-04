@@ -87,10 +87,10 @@ function AgGridEvent({EventsData,archieveEvent,deleteEvent}) {
     
       </div>
     },
-    { headerName: "Event Id", field: "_id" ,sort: 'desc' , valueFormatter: format_Id},
+    // { headerName: "Event Id", field: "_id" ,sort: 'desc' , valueFormatter: format_Id},
 
     { headerName: "Event name", field: "name",flex: 1.5 },
-    { headerName: "Event Date", field: "date" , valueFormatter: format_Date},
+    { headerName: "Event Date", field: "date" ,sort: 'desc', valueFormatter: format_Date},
     // { headerName: "Orders", field: "orders" , valueFormatter: format_OrderCount},
     // { headerName: "Profit", field: "orders" , valueFormatter: format_OrderProfit},
 

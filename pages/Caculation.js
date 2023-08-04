@@ -9,46 +9,69 @@ const Caculation = () => {
   useEffect(() => {
     fetchEvents();
   }, [])
+
+
+
+  
+
+  
+    let SaharOrders = 0;
+    let SaharProfit = 0;
+    let SaharTotal= 0;
+    let SaharNet= 0;
+
+    
+    let DoaaOrders = 0;
+    let DoaaProfit = 0;
+    let DoaaTotal= 0;
+    let DoaaNet= 0;
+
+    
+  
+    for (const event of Events) {
+      
+      SaharOrders += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').length);
+      SaharProfit += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) || 0);
+      SaharTotal += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 ) || 0);
+      if (event.paid)
+      SaharNet += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) || 0);
+      else
+      SaharNet += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 ) || 0);
+
+
+      DoaaOrders += Number (event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').length);
+      DoaaProfit += Number (event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').reduce((a,v) =>  a = a + Number(v.profit) , 0 )) ;
+      DoaaTotal += Number (event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').reduce((a,v) =>  a = a + Number(v.total) , 0 )) ;
+      if (event.paid)
+      DoaaNet += Number (event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) || 0);
+      else
+      DoaaNet += Number (event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').reduce((a,v) =>  a = a + Number(v.total) , 0 ) || 0);
+
+      
+    }
+
   function fetchEvents() {
     axios.get('/api/Events').then(result => {
       setEvents(result.data);
     });
+    
   }
 
-      let SaharOrders = 0;
-      let SaharProfit = 0;
-      let SaharTotal= 0;
-      let SaharNet= 0;
+ 
 
-      
-      let DoaaOrders = 0;
-      let DoaaProfit = 0;
-      let DoaaTotal= 0;
-      let DoaaNet= 0;
-
-      
-    
-      for (const event of Events) {
+      async function  PayEvent (Event,stype){
         
-        SaharOrders += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').length);
-        SaharProfit += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) || 0);
-        SaharTotal += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 ) || 0);
-        if (event.paid)
-        SaharNet += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) || 0);
-        else
-        SaharNet += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 ) || 0);
+         
+            const {_id} = Event;
+            if (stype=='Paid')
+            await axios.put(`/api/EventPaid?_id=`+_id);
+            else
+            await axios.delete(`/api/EventPaid?_id=`+_id);
 
-
-        DoaaOrders += Number (event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').length);
-        DoaaProfit += Number (event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').reduce((a,v) =>  a = a + Number(v.profit) , 0 )) ;
-        DoaaTotal += Number (event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').reduce((a,v) =>  a = a + Number(v.total) , 0 )) ;
-        if (event.paid)
-        DoaaNet += Number (event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) || 0);
-        else
-        DoaaNet += Number (event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').reduce((a,v) =>  a = a + Number(v.total) , 0 ) || 0);
-
-        
-      }
+            fetchEvents();
+          
+        };
+      
  
   return (
     <Layout>
@@ -96,7 +119,10 @@ const Caculation = () => {
               <td>{Event.name}</td>
               <td>{String(Event.date).slice(0,10)}</td>
               <td className={Event.paid ? 'text-green-600' : 'text-red-600'}>
-              {Event.paid ? 'Paid' : 'UnPaid'}
+              {/* {Event.paid ? 'YES' : 'NO'} */}
+                 <button
+                  onClick={() => {PayEvent(Event,Event.paid ?'UnPaid':'Paid')}}
+                  className={Event.paid ? 'btn-green':  'btn-default' }>{Event.paid ? 'Paid': 'UnPaid' }</button>
                </td>
 
               <td>{Event.orders.filter((ord)=> ord.createdby=='sahar youssef').length}</td>
