@@ -59,7 +59,7 @@ myEvent.ticketsCategory.map(product => {
       
     const {
       event,name,phone,notes,total,profit,id,
-      cartProducts,
+      cartProducts,createdby
     } = req.body;
   
    //console.log(id,event)
@@ -87,7 +87,7 @@ myEvent.ticketsCategory.map(product => {
     //const {id1} = [...id];
     
     const orderDoc = await Eorder.updateOne({_id:id},{
-      line_items,event,name,phone,notes,total,profit,
+      line_items,event,name,phone,notes,total,profit,createdby
     });
   
 

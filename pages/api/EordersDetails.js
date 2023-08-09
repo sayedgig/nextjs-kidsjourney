@@ -16,4 +16,17 @@ export default async function handle(req, res) {
       }
       
     }
+
+    // if (method === 'PUT') {
+    //   const {_id} = req.query;
+    //   const {
+    //     createdby
+    //   } = req.body;
+    
+      
+    //   await Eorder.updateOne({_id},{
+    //     createdby:createdby,
+    //   });
+    //   res.json('ok');
+    // }
 }

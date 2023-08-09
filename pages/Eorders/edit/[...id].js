@@ -83,6 +83,8 @@ const EditOrder = () => {
   const [notes,setNotes] = useState('');
   const[cartProducts,setCartProducts] = useState([]);
   
+  const [createdby,setCreatedby] = useState('');
+
   
   useEffect(() => {
     if (!id) {
@@ -98,6 +100,8 @@ const EditOrder = () => {
         setName(response.data?.name);
         setPhone(response.data?.phone);
         setNotes(response.data?.notes);
+        setCreatedby(response.data?.createdby);
+
         setCartProducts([]);
         response.data?.line_items.map(
           item =>{
@@ -164,7 +168,7 @@ const EditOrder = () => {
     async function goToPayment() {
          const response = await axios.put('/api/checkout', {
            event:_id,name,phone,notes,total,profit,id,
-          cartProducts,
+          cartProducts,createdby
         });
         router.push('/Eorders/'+ _id);
     
@@ -173,6 +177,26 @@ const EditOrder = () => {
         router.push('/Eorders/'+ _id);
 
        }
+
+       function  CreatedByOrder (){
+        
+        
+  
+        
+        if (createdby=='Sahar Youssef')
+           setCreatedby("Doaa Mahmoud") ;
+        
+        if (createdby=='Doaa Mahmoud')
+           setCreatedby("Sahar Youssef") ;
+        
+           
+  
+        // if (changedCreatedby.length > 0 )
+        //    await axios.put(`/api/EordersDetails?_id=`+_id, {createdby:changedCreatedby});
+  
+      
+      
+    };
 
 
   return (
@@ -184,6 +208,18 @@ const EditOrder = () => {
             <Title>Event: {existingName}  in Date { String(existingDate).slice(0, 10)} </Title>
             
 
+            <hr />
+            <h3>Admin</h3>
+            <button
+                  onClick={() => {
+                    window.confirm( 'Are you sure you want to change admin? '  , ) && CreatedByOrder()
+                  }}
+                  // className={Event.paid ? 'btn-green':  'btn-default' }
+                  style={{
+                    backgroundColor: String(createdby).includes('Sahar') ?`rgb(24,176,242)`:`rgb(97,242,24)` 
+                   }} 
+                  >{String(createdby)}</button>
+            
             <hr />
           
             {assignedTicketsCategory?.length > 0 && (
