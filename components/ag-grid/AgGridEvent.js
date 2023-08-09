@@ -19,10 +19,14 @@ function AgGridEvent({EventsData,archieveEvent,deleteEvent}) {
     return String(obj.value).substr(0, 6).toUpperCase();
   };
   const format_Date = (obj) => {
-    // this puts commas into the number eg 1000 goes to 1,000,
-    // i pulled this from stack overflow, i have no idea how it works
-    //console.log(obj);
-    return String(obj.value).slice(0,10);
+    
+
+    return getDayName(new Date(String(obj.value).slice(0,10)))
+    .substr(0, 3)
+    .toUpperCase()
+    .concat('-')
+    .concat(String(obj.value).slice(0,10))
+    ;
   };
 
   const format_OrderCount = (obj) => {
@@ -57,6 +61,14 @@ function AgGridEvent({EventsData,archieveEvent,deleteEvent}) {
     return Number(profit).toLocaleString();
   };
 
+  
+function getDayName(date = new Date(), locale = 'en-US') {
+  return date.toLocaleDateString(locale, {weekday: 'long'});
+}
+
+
+
+
   const columnDefs = [
     {
       headerName: "Actions", field: "_id" ,filter: false,flex: 2, cellRendererFramework: (params) => <div>
@@ -66,6 +78,12 @@ function AgGridEvent({EventsData,archieveEvent,deleteEvent}) {
         onClick={()=>{Router.push(`/Eorders/${params.data._id}`);  } } >
          
         Orders
+        </Button>
+    
+        <Button variant="contained" color="warning"  
+        onClick={()=>{Router.push(`/Event/${params.data._id}`);  } } >
+         
+        Copy
         </Button>
 
         <Button variant="outlined" color="success"  onClick={()=>{

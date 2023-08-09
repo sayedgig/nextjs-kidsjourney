@@ -63,8 +63,6 @@ import AgGridEvent from "@/components/ag-grid/AgGridEvent";
 
 //////////////////////////////
 
-
-
   
   return (
     <Layout>
