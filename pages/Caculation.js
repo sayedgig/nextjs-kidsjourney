@@ -30,15 +30,15 @@ const Caculation = () => {
   
     for (const event of Events) {
       
-      SaharOrders += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').length);
-      SaharProfit += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) || 0);
-      SaharTotal += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 ) || 0);
+      SaharOrders += Number (event.orders.filter((ord)=> ord.createdby=='Sahar Youssef').length);
+      SaharProfit += Number (event.orders.filter((ord)=> ord.createdby=='Sahar Youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) || 0);
+      SaharTotal += Number (event.orders.filter((ord)=> ord.createdby=='Sahar Youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 ) || 0);
       
       
       if (event.paid)
-      SaharNet += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) || 0);
+      SaharNet += Number (event.orders.filter((ord)=> ord.createdby=='Sahar Youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) || 0);
       else
-      SaharNet += Number (event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 ) || 0);
+      SaharNet += Number (event.orders.filter((ord)=> ord.createdby=='Sahar Youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 ) || 0);
 
 
       DoaaOrders += Number (event.orders.filter((ord)=> ord.createdby=='Doaa Mahmoud').length);
@@ -127,18 +127,18 @@ const Caculation = () => {
                   className={Event.paid ? 'btn-green':  'btn-default' }>{Event.paid ? 'Paid': 'UnPaid' }</button>
                </td>
 
-              <td>{Event.orders.filter((ord)=> ord.createdby=='sahar youssef').length}</td>
+              <td>{Event.orders.filter((ord)=> ord.createdby=='Sahar Youssef').length}</td>
               <td>{
                  Number( 
-              Event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 )
+              Event.orders.filter((ord)=> ord.createdby=='Sahar Youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 )
               ).toLocaleString() 
               }</td>
               <td>{
                 Event.paid ? 0 :
                 Number(
-              Event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 ) 
+              Event.orders.filter((ord)=> ord.createdby=='Sahar Youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 ) 
                -  
-               Event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) 
+               Event.orders.filter((ord)=> ord.createdby=='Sahar Youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) 
                ).toLocaleString() 
  
               }</td>
@@ -150,16 +150,16 @@ const Caculation = () => {
                {/* <td>
                 {
                 Number(
-                Event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 )
+                Event.orders.filter((ord)=> ord.createdby=='Sahar Youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 )
                 ).toLocaleString() 
                 }</td> */}
                <td>
                 {
                 Number(
                 Event.paid ? 
-                Event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) 
+                Event.orders.filter((ord)=> ord.createdby=='Sahar Youssef').reduce((a,v) =>  a = a + Number(v.profit) , 0 ) 
                 :
-                Event.orders.filter((ord)=> ord.createdby=='sahar youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 )
+                Event.orders.filter((ord)=> ord.createdby=='Sahar Youssef').reduce((a,v) =>  a = a + Number(v.total) , 0 )
 
                 
                 ).toLocaleString() 
