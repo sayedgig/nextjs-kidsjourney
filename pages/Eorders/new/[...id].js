@@ -199,6 +199,24 @@ const getPhonesOne = async (str) => {
   }
 };
 
+const getEventName =  async (str) => {
+  try {
+   // let searchableCity = str.replace(/,/g, "");
+    let url = "/api/Events?id=" + str;
+    //let url = "" + searchableCity;
+
+    let { data } = await axios.get(url);
+    //console.log(data.name);
+    if (data)
+       return data.name.concat(':').concat(String(data.date).slice(0,10));
+     else
+       return ""
+  } catch (error) {
+    console.error(error);
+    return "";
+  }
+};
+
   const [optionsOne, setOptionsOne] = useState([]);
   const [optionsTwo, setOptionsTwo] = useState([]);
   const [value, setValue] = useState("");
@@ -214,7 +232,13 @@ const getPhonesOne = async (str) => {
     if (e.target.value) {
       setPhone(e.target.value);
       let data = await getPhonesOne(e.target.value);
-      setOptionsTwo(data);
+      const asyncRes = await Promise.all(data.map(async (obj) => {
+        let ee = await getEventName(obj.event) 
+        return `${obj.name}:${obj.phone}:${obj.createdby}:${ee}`
+      }));
+      //.map((obj) => `${obj.name}:${obj.phone}:${obj.createdby}` )
+      //console.log(asyncRes);
+      setOptionsTwo(asyncRes);
     }
   };
   const handleFillButton =(text)=>{
@@ -318,7 +342,9 @@ const getPhonesOne = async (str) => {
                         setValue(e.target.innerText)
                         handleFillButton(e.target.innerText)
                       }}
-                      options={optionsTwo ? optionsTwo.map((obj) => `${obj.name}:${obj.phone}:${obj.createdby}`) : []}
+                      options={optionsTwo ?  optionsTwo
+                       // .map( (obj) => `${obj.name}:${obj.phone}:${obj.createdby}`)
+                         : []}
                       renderInput={(params) => (
                         <TextField
                           {...params}

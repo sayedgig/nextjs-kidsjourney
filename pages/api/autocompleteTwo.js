@@ -44,6 +44,7 @@ export default async function handle(req, res) {
                 phone: 1,
                 notes: 1,
                 createdby:1,
+                event:1,
                 score: { $meta: "searchScore" },
               },
             },
@@ -58,6 +59,7 @@ export default async function handle(req, res) {
         if (req.query?.phone)
         { 
              res.json(await Eorder.aggregate([
+              
                 {
                   $search: {
                     index: "default",
@@ -87,6 +89,7 @@ export default async function handle(req, res) {
                   phone: 1,
                   notes: 1,
                   createdby:1,
+                  event:1,
                   score: { $meta: "searchScore" },
                 },
               },

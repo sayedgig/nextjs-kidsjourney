@@ -16,6 +16,13 @@ export default async function handle(req, res) {
       { 
            res.json(await Eorder.aggregate([
             {
+              $lookup:{
+                  from:"Event",
+                  localField:"event",
+                  foreignField:"_id",
+                  as:"events"
+              }},
+            {
               $search: {
                 index: "autocomplete",
                 autocomplete: {
@@ -36,6 +43,7 @@ export default async function handle(req, res) {
                 phone: 1,
                 notes: 1,
                 createdby:1,
+                "events.name":1,
                 score: { $meta: "searchScore" },
               },
             },
@@ -49,7 +57,15 @@ export default async function handle(req, res) {
 
         if (req.query?.phone)
         { 
+
              res.json(await Eorder.aggregate([
+              {
+                $lookup:{
+                    from:"Event",
+                    localField:"event",
+                    foreignField:"_id",
+                    as:"events"
+                }},
               {
                 $search: {
                   index: "autocomplete",
@@ -71,6 +87,7 @@ export default async function handle(req, res) {
                   phone: 1,
                   notes: 1,
                   createdby:1,
+                  "events.name":1,
                   score: { $meta: "searchScore" },
                 },
               },
