@@ -207,7 +207,7 @@ const getEventName =  async (str) => {
 
     let { data } = await axios.get(url);
     //console.log(data.name);
-    if (data)
+    if (data )
        return data.name.concat(':').concat(String(data.date).slice(0,10));
      else
        return ""
@@ -231,13 +231,15 @@ const getEventName =  async (str) => {
   const onChangeTwo = async (e) => {
     if (e.target.value) {
       setPhone(e.target.value);
-      let data = await getPhonesOne(e.target.value);
+      let response = await getPhonesOne(e.target.value);
+      let data = response.filter((obj)=>obj.phone.length >3 );
+      // console.log(data);
       const asyncRes = await Promise.all(data.map(async (obj) => {
         let ee = await getEventName(obj.event) 
         return `${obj.name}:${obj.phone}:${obj.createdby}:${ee}`
       }));
       //.map((obj) => `${obj.name}:${obj.phone}:${obj.createdby}` )
-      //console.log(asyncRes);
+      // console.log(asyncRes);
       setOptionsTwo(asyncRes);
     }
   };
