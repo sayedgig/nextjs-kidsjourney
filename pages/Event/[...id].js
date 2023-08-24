@@ -235,6 +235,30 @@ function Events({swal}) {
   }
   
   
+  
+//  let report = [];    
+//   for (const event of Events) {
+//     for (const order of event.orders) {
+//       let quantity = 0;
+//       for (const item of order.line_items) {
+//         //console.log(item.cname)
+//         // if (Number(item.sprice)>0)
+//              quantity = quantity +(Number(item.quantity));
+//       }
+//         report.push({
+//             eventName:event.name,
+//             eventDate:event.date,
+//             name:order.name,
+//             phone:order.phone,
+//             total:order.total,
+//             profit:order.profit,
+//             notes:order.notes,
+//             quantity:quantity
+//         });         
+//     }}
+//     console.log("report",report)
+
+//   https://products.aspose.app/cells/conversion/json-to-xlsx
 
   return (
     <Layout>

@@ -29,6 +29,7 @@ function Events({swal}) {
     axios.get('/api/Events').then(result => {
       setEvents(result.data);
       //console.log("get",result.data);
+  
     });
   }
   async function saveEvent(ev){
@@ -218,6 +219,7 @@ function Events({swal}) {
   return (
     <Layout>
       <h1>Events</h1>
+
       <label>
         {editedEvent
           ? `Edit Event ${editedEvent.name}`

@@ -2,6 +2,7 @@ import {mongooseConnect} from "@/lib/mongoose";
 import {Product} from "@/models/Product";
 import {Eorder} from "@/models/Eorder";
 import {Event} from "@/models/Event";
+import { EorderEdit } from "@/models/EorderEdit";
 
 
 
@@ -81,7 +82,14 @@ myEvent.ticketsCategory.map(product => {
   })
     
 
-      
+    //audit Edit record
+    var EditOreder = await Eorder.findOne({_id:id })
+    var obj1 = EditOreder._doc;
+    delete obj1["_id"];
+    var obj2 = {...obj1, eorder:id}
+    // console.log(obj2);
+    const orderEdit = await EorderEdit.create(obj2);
+
   
   
     //const {id1} = [...id];

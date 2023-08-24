@@ -21,7 +21,7 @@ const PrintEvent = () => {
         if (!id) {
           return;
         }
-        axios.get('/api/Events?id='+id).then(response => {
+        axios.get('/api/Events?id='+id).th.en(response => {
             //console.log(response.data);
             setEventData(response.data);
         });

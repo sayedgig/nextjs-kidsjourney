@@ -1,4 +1,6 @@
 import {Eorder} from "@/models/Eorder";
+import {EorderDelete} from "@/models/EorderDelete";
+
 import {mongooseConnect} from "@/lib/mongoose";
 import {getServerSession} from "next-auth";
 import {authOptions, isAdminRequest} from "@/pages/api/auth/[...nextauth]";
@@ -49,6 +51,18 @@ export default async function handle(req, res) {
   
    // const {_id} = req.query;
     //console.log(_id)
+
+
+    //audit delete record
+    var myOreder = await Eorder.findOne({_id:req.query?.id })
+    var obj1 = myOreder._doc;
+    delete obj1["_id"];
+    var obj2 = {...obj1, eorder:req.query?.id}
+
+    // console.log(obj2);
+    
+    const orderDoc = await EorderDelete.create(obj2);
+
     await Eorder.deleteOne({_id:req.query?.id });
     res.json(true);
     
