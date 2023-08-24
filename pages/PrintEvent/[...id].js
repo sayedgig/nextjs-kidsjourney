@@ -16,16 +16,18 @@ const PrintEvent = () => {
     const [eventData, setEventData] = useState(null);
     const router = useRouter();
     const {id} = router.query;
+    
     useEffect(() => {
 
         if (!id) {
           return;
         }
-        axios.get('/api/Events?id='+id).th.en(response => {
-            //console.log(response.data);
+        //console.log(id)
+
+        axios.get('/api/Events?id='+id).then(response => {
+            //console.log("loading",response.data);
             setEventData(response.data);
         });
-        
 
       }, [id]);
 

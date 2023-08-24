@@ -255,6 +255,7 @@ let recordNo =0;
     };
 
     const PrintCard = () =>{
+      //console.log("ok")
       router.push('/PrintEvent/'+ _id);
 
     }
