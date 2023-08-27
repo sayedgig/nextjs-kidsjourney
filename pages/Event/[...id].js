@@ -13,7 +13,7 @@ function Events({swal}) {
 
   const [name,setName] = useState( '');
   const [eDate,setEDate] = useState( '');
-  const[imagePath,setImagePath] = useState( '');
+  const[imagePath,setImagePath] = useState( '$');
   const [ticketsCategory,setTicketsCategory] = useState([]);
 
 
@@ -69,13 +69,16 @@ function Events({swal}) {
     };
     // console.log("data",data);
     if (editedEvent) {
+     // console.log("put","this is edit  record");
+
       data._id = editedEvent._id;
       await axios.put('/api/Events', data);
       setEditedEvent(null);
     } else {
+      //console.log("post",data);
+      
       await axios.post('/api/Events', data).then(result => {
-       // console.log("post",result.data);
-      });;
+      });
     }
     setName('');
     setEDate('');
