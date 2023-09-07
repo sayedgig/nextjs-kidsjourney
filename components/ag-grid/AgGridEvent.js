@@ -19,8 +19,6 @@ function AgGridEvent({EventsData,archieveEvent,deleteEvent}) {
     return String(obj.value).substr(0, 6).toUpperCase();
   };
   const format_Date = (obj) => {
-    
-
     return getDayName(new Date(String(obj.value).slice(0,10)))
     .substr(0, 3)
     .toUpperCase()
@@ -35,6 +33,14 @@ function AgGridEvent({EventsData,archieveEvent,deleteEvent}) {
    // console.log(obj.value);
     return obj.value.length;
   };
+
+  const format_paid = (obj) => {
+
+    return obj.value 
+    // (<span  className={obj.value? 'text-green-600' : 'text-red-600'}>obj.value</span>);
+  };
+
+  
   const format_OrderProfit = (obj) => {
  
     // let total = 0;
@@ -109,7 +115,11 @@ function getDayName(date = new Date(), locale = 'en-US') {
 
     { headerName: "Event name", field: "name",flex: 1.5 },
     { headerName: "Event Date", field: "date" ,sort: 'desc', valueFormatter: format_Date},
-    // { headerName: "Orders", field: "orders" , valueFormatter: format_OrderCount},
+    { headerName: "Paid", field: "paid" , cellRendererFramework: (ppp) => <div>
+      <p className={ppp.data.paid ? 'text-green-600' : 'text-red-600'}>
+      {ppp.data.paid?'Paid':'unPaid' }
+      </p>
+      </div>  },
     // { headerName: "Profit", field: "orders" , valueFormatter: format_OrderProfit},
 
 
