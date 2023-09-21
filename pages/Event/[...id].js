@@ -392,7 +392,11 @@ function Events({swal}) {
             <tr key={Event._id}>
               <td>{Event._id.substr(0, 6).toUpperCase()}</td>
               <td>{Event.name}</td>
-              <td>{
+              <td
+              className=
+              {(new Date() > new Date(String(Event.date).slice(0,10)) ) ? 'txt-strike':''}
+
+              >{
                 getDayName(new Date(String(Event.date).slice(0,10)))
                 .substr(0, 3)
                 .toUpperCase()
