@@ -394,7 +394,7 @@ function Events({swal}) {
               <td>{Event.name}</td>
               <td
               className=
-              {(new Date() > new Date(String(Event.date).slice(0,10)) ) ? 'txt-strike':''}
+              {Event.paid ? 'txt-strike':''}
 
               >{
                 getDayName(new Date(String(Event.date).slice(0,10)))
