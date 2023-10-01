@@ -51,6 +51,9 @@ const OrderInfo = ({
           fetchOrder('all');
         
       };
+      function getDayName(date = new Date(), locale = 'en-US') {
+        return date.toLocaleDateString(locale, {weekday: 'long'});
+      }
 
       let total = 0;
       let ototal = 0;
@@ -237,7 +240,10 @@ let recordNo =0;
           const url = window.URL.createObjectURL(blob);
           const anchor = document.createElement("a");
           anchor.href = url;
-          anchor.download = existingName+_id+".xlsx";
+          anchor.download = existingName+
+          getDayName(new Date(String(existingDate).slice(0,10))).slice(0,3)
+          +String(existingDate).slice(0,10)
+          +".xlsx";
           anchor.click();
           window.URL.revokeObjectURL(url);
         });
@@ -299,6 +305,9 @@ let recordNo =0;
   
   <span>Download PDF</span>
 </button>
+</div>
+<div>
+
 </div>
       <table className="basic">
         <thead>

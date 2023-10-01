@@ -12,6 +12,8 @@ import { useRouter } from 'next/router';
 function Events({swal}) {
 
   const [name,setName] = useState( '');
+  const [notes,setNotes] = useState( '');
+
   const [eDate,setEDate] = useState( '');
   const[imagePath,setImagePath] = useState( '$');
   const [ticketsCategory,setTicketsCategory] = useState([]);
@@ -29,9 +31,12 @@ function Events({swal}) {
           //  console.log("copy",response.data);
            // setEventCopy(response.data);
             setName(response.data.name);
+            setNotes(response.data.notes);
+
            // setEDate(response.data.date);
             setImagePath(response.data.path);
             setTicketsCategory(response.data.ticketsCategory);
+
         });
       }
 
@@ -61,6 +66,7 @@ function Events({swal}) {
    if (ticketsCategory.length > 0){
     const data = {
       name,
+      notes,
       date:eDate,
       path:imagePath,
       
@@ -85,6 +91,7 @@ function Events({swal}) {
       });
     }
     setName('');
+    setNotes('');
     setEDate('');
     setImagePath('$');
     setTicketsCategory([]);
@@ -106,6 +113,7 @@ function Events({swal}) {
   function editEvent(event){
     setEditedEvent(event);
     setName(event.name);
+    setNotes(event.notes);
     setImagePath(event.path);
     
     //console.log("date",moment(event.date).utc().format("YYYY-MM-DD"));
@@ -308,6 +316,13 @@ function Events({swal}) {
 
           {imagePath && imagePath.length>1 && (<img src ={`/${imagePath}`}  style={{width:100 , height:100}} />)}
           
+          <input
+            type="text"
+            placeholder={'Event Notes'}
+            onChange={ev => setNotes(ev.target.value)}
+            value={notes}
+            
+            />
                      
         
           <label className="block">Ticket Category</label>
@@ -361,6 +376,7 @@ function Events({swal}) {
               onClick={() => {
                 setEditedEvent(null);
                 setName('');
+                setNotes('');
                 setEDate('');
                 setImagePath('$');
                 setTicketsCategory([]);
@@ -380,6 +396,7 @@ function Events({swal}) {
           <tr>
              <td>Event Id</td>
             <td>Event Name</td>
+            <td>Notes</td>
             <td>Event Date</td>
             <td>Orders</td>
             {/* <td>Paid</td> */}
@@ -392,6 +409,7 @@ function Events({swal}) {
             <tr key={Event._id}>
               <td>{Event._id.substr(0, 6).toUpperCase()}</td>
               <td>{Event.name}</td>
+              <td>{Event.notes}</td>
               <td
               className=
               {Event.paid ? 'txt-strike':''}
