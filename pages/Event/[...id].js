@@ -394,10 +394,11 @@ function Events({swal}) {
         <table className="basic mt-4">
           <thead>
           <tr>
-             <td>Event Id</td>
+             {/* <td>Event Id</td> */}
             <td>Event Name</td>
-            <td>Notes</td>
+            
             <td>Event Date</td>
+            <td>Notes</td>
             <td>Orders</td>
             {/* <td>Paid</td> */}
             {/* <td>Profit</td> */}
@@ -407,9 +408,8 @@ function Events({swal}) {
           <tbody>
           {Events.length > 0 && Events.map(Event => (
             <tr key={Event._id}>
-              <td>{Event._id.substr(0, 6).toUpperCase()}</td>
+              {/* <td>{Event._id.substr(0, 6).toUpperCase()}</td> */}
               <td>{Event.name}</td>
-              <td>{Event.notes}</td>
               <td
               className=
               {Event.paid ? 'txt-strike':''}
@@ -422,6 +422,8 @@ function Events({swal}) {
                 .concat(String(Event.date).slice(0,10))
                
               }</td>
+              <td>{Event.notes}</td>
+
               <td>{Event.orders.length}</td>
               {/* <td className={Event.paid ? 'text-green-600' : 'text-red-600'}>
             
