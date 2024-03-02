@@ -1,0 +1,12 @@
+GOOGLE_ID=83836196952-5aehbt8m7abjrggpivr3crtmf3b58qlt.apps.googleusercontent.com
+GOOGLE_SECRET=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
+MONGODB_URI=mongodb+srv://user:P%40ssw0rd@myfirstdatabase.9an9lsg.mongodb.net/?retryWrites=true&w=majority
+SECRET=mysecret
+
+
+{"web":{
+    "client_id":"225938419750-rpq5870udi0jefusoqqp10ssp3ab4opp.apps.googleusercontent.com",
+    "project_id":"my-app-401515","auth_uri":"https://accounts.google.com/o/oauth2/auth"
+    ,"token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url"
+    :"https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret":"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","redirect_uris":["http://localhost:3000/api/auth/callback/google"],"javascript_origins":["http://localhost:3000"]}}
