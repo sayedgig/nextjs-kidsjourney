@@ -1,0 +1,100 @@
+https://console.cloud.google.com/welcome?_ga=2.168367073.-1397607996.1684440584&_gac=1.122744313.1685167557.CjwKCAjwscGjBhAXEiwAswQqNKs1o6aA1JOcQJTzGxOcv4D_14yrn5JuYQP2JgR7knsaHL2QHoQONhoCKlAQAvD_BwE&hl=en&authuser=1&pli=1&project=central-splice-354206
+
+http://localhost:3000/api/auth/callback/google
+http://localhost:3000/api/auth/callback/google
+
+new deploy 
+https://kidsjourney.vercel.app
+
+google url
+https://kidsjourney.vercel.app/api/auth/callback/google
+///////////////////////////////////////////
+
+mangodb  
+
+https://account.mongodb.com/account/login?n=%2Fv2%2F63b69a9d3f6caf303b174742%23%2Fmetrics%2FreplicaSet%2F64623af2a86a957b443f08c5%2Fexplorer%2Ftest
+
+.env
+////////////////////////////
+GOOGLE_ID="83836196952-5aehbt8m7abjrggpivr3crtmf3b58qlt.apps.googleusercontent.com"
+GOOGLE_SECRET="GOCSPX-wMXYJASCNZdgTgAuliczzm08d6-"
+MONGODB_URI= "mongodb+srv://user:P%40ssw0rd@myfirstdatabase.9an9lsg.mongodb.net/?retryWrites=true&w=majority"
+SECRET="mysecret"
+//////////////////////////
+
+vercel login : linayouness2018@gmail.com
+
+https://vercel.com/linayouness2018-gmailcom/kidsjourney/deployments
+
+///////////////////////
+connect to mongodb compass
+connection string
+mongodb+srv://user:P%40ssw0rd@myfirstdatabase.9an9lsg.mongodb.net/
+browse test database
+browse collection
+export collections
+
+///////////
+
+excel sheet
+
+https://github.com/exceljs/exceljs#headers-and-footers
+//////////////////////////////////
+git init 
+git add .
+git remote add origin https://github.com/sayedgig/nextjs-kidsjourney.git
+git commit -m "add project"
+git push origin master
+
+//////////////////////
+git add .
+git status
+git commit -m "color createby in orders table"
+git push
+    git push --set-upstream origin master
+
+
+//////////////////////////////////
+
+
+new publuisg
+
+https://app.netlify.com/projects/kidsjourney/overview
+
+/////
+
+new MONGODB_URI
+
+MONGODB_URI=mongodb+srv://user:P%40ssw0rd@cluster0.n5akgwf.mongodb.net/?retryWrites=true&w=majority
+
+search 
+
+{
+  "mappings": {
+    "dynamic": true,
+    "fields": {
+      "name": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "autocomplete"
+        },
+        {
+          "type": "token"
+        }
+      ],
+      "phone": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "autocomplete"
+        },
+        {
+          "type": "token"
+        }
+      ]
+    }
+  }
+}
